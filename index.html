@@ -202,8 +202,9 @@ section{padding:90px 0}
 .ig-handle{color:var(--accent2);font-weight:700}
 
 /* DEMO */
-.demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-@media(max-width:720px){.demo-grid{grid-template-columns:1fr}}
+.demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:960px){.demo-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.demo-grid{grid-template-columns:1fr}}
 .demo-card{
   background:var(--card);border:1px solid var(--border);border-radius:20px;
   padding:32px 28px;display:flex;flex-direction:column;transition:.25s;
@@ -379,6 +380,13 @@ footer .logo{margin-bottom:10px}
           <button class="btn btn-primary" onclick="openModal('https://res.cloudinary.com/doc4xeng1/video/upload/saloon_coop.mp4')">Смотреть демо</button>
         </div>
       </div>
+      <div class="demo-card">
+        <h3>Бот для цветов</h3>
+        <p>Клиент пишет конкретный запрос или описывает повод — бот подбирает букет, считает стоимость и оформляет доставку.</p>
+        <div class="demo-btns">
+          <button class="btn btn-primary" onclick="openModal('')">Смотреть демо</button>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -391,6 +399,7 @@ footer .logo{margin-bottom:10px}
       <div class="try-btns">
         <a class="btn btn-primary" href="https://wa.me/77066328318" target="_blank">Попробовать доставку</a>
         <a class="btn btn-ghost soon-btn" id="soonBtn" href="#" data-tooltip="Скоро будет доступно">Попробовать салон</a>
+        <a class="btn btn-ghost" href="https://wa.me/77066119213" target="_blank">Попробовать цветы</a>
       </div>
     </div>
   </div>
@@ -449,6 +458,7 @@ footer .logo{margin-bottom:10px}
       <div class="tab active" data-niche="delivery">Доставка</div>
       <div class="tab" data-niche="salon">Салоны</div>
       <div class="tab" data-niche="resto">Рестораны</div>
+      <div class="tab" data-niche="flower">Цветы</div>
     </div>
     <div class="plans" id="plans"></div>
     <p style="text-align:center;color:var(--muted);font-size:15px;margin-top:32px">Точная стоимость зависит от ниши, каналов и функций</p>
@@ -510,6 +520,11 @@ const data={
     {tier:'Mini',price:'60–80к',feat:['Приём заказов / брони','Меню в чате','Авто-ответы','Уведомление вам о заказе']},
     {tier:'Basic',price:'100–150к',featured:true,feat:['Всё из Mini','Корзина и оформление','Бронь столиков','WhatsApp + Instagram','Статусы заказа клиенту']},
     {tier:'Pro',price:'180–250к',feat:['Всё из Basic','Онлайн-оплата','CRM гостей','Аналитика и отчёты','Акции и рассылки']},
+  ],
+  flower:[
+    {tier:'Mini',price:'60–90к',feat:['Приём заказов на доставку','Каталог букетов и цены','Авто-ответы клиентам','Уведомление вам о заказе']},
+    {tier:'Middle',price:'100–150к',featured:true,feat:['Всё из Mini','Подбор букета по поводу','Расчёт стоимости в боте','WhatsApp + Instagram','Статусы доставки клиенту']},
+    {tier:'Pro',price:'170–250к',feat:['Всё из Middle','Онлайн-оплата в боте','CRM и история клиентов','Аналитика и отчёты','Рассылки и акции']},
   ],
 };
 const plansEl=document.getElementById('plans');
