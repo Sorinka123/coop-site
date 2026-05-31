@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>COOP — Автоматизация бизнеса через WhatsApp и Instagram</title>
+<title>coop — Автоматизация бизнеса через WhatsApp и Instagram</title>
 <style>
 :root{
   --bg:#08090c;
@@ -66,7 +66,7 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 /* HERO */
 .hero{
   position:relative;
-  padding:120px 0 55px;
+  padding:170px 0 110px;
   text-align:center;
   overflow:hidden;
 }
@@ -95,8 +95,6 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
   max-width:560px;margin:0 auto 38px;
 }
 .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
-.demo-cta-row{display:inline-flex;gap:14px}
-.demo-cta-row .btn{flex:1;justify-content:center;padding:11px 22px;white-space:nowrap}
 .hero-socials{display:flex;gap:14px;justify-content:center;margin-top:32px}
 .hero-socials a{
   width:48px;height:48px;border-radius:14px;
@@ -108,9 +106,9 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .hero-socials svg{width:22px;height:22px}
 
 /* SECTION */
-section{padding:45px 0}
-.eyebrow{color:var(--accent2);font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
-.sec-head{text-align:center;margin-bottom:28px}
+section{padding:90px 0}
+.eyebrow{color:var(--accent2);font-size:14px;font-weight:600;letter-spacing:1px;text-transform:uppercase;margin-bottom:14px}
+.sec-head{text-align:center;margin-bottom:56px}
 .sec-head h2{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-1px}
 .sec-head p{color:var(--muted);margin-top:12px;font-size:17px}
 
@@ -204,9 +202,8 @@ section{padding:45px 0}
 .ig-handle{color:var(--accent2);font-weight:700}
 
 /* DEMO */
-.demo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-@media(max-width:960px){.demo-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.demo-grid{grid-template-columns:1fr}}
+.demo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
+@media(max-width:720px){.demo-grid{grid-template-columns:1fr}}
 .demo-card{
   background:var(--card);border:1px solid var(--border);border-radius:20px;
   padding:32px 28px;display:flex;flex-direction:column;transition:.25s;
@@ -295,14 +292,11 @@ footer .logo{margin-bottom:10px}
 
 <nav>
   <div class="container">
-    <div class="logo"><img src="logo.png" alt="COOP" style="height:100px;filter:brightness(0) invert(1)"></div>
+    <div class="logo"><img src="logo.png" alt="coop" style="height:100px;filter:brightness(0) invert(1)"></div>
     <div class="nav-links">
       <a href="#how">Как работает</a>
-      <a href="#demo">Демо</a>
-      <a href="#try">Попробовать бота</a>
-      <a href="#benefits">Польза</a>
       <a href="#pricing">Тарифы</a>
-      <a href="#contacts">Контакты</a>
+      <a href="#contact">Контакты</a>
     </div>
     <div class="nav-socials">
       <a href="https://wa.me/77066328318" target="_blank" aria-label="WhatsApp" title="WhatsApp">
@@ -322,47 +316,17 @@ footer .logo{margin-bottom:10px}
   <div class="container">
     <div class="badge"><span class="dot"></span>Автоматизация в WhatsApp и Instagram</div>
     <h1>Боты не дают клиентам <br><span class="grad">уходить к конкурентам</span></h1>
-    <p class="sub">COOP автоматизирует переписку, заказы и записи. Клиент пишет — бот мгновенно отвечает и продаёт за вас 24/7.</p>
-    <p class="sub" style="margin-top:-22px;margin-bottom:32px;font-weight:600;color:#cfd2d8">Не конструктор — готовая настройка под ваш бизнес.</p>
+    <p class="sub">coop автоматизирует переписку, заказы и записи. Клиент пишет — бот мгновенно отвечает и продаёт за вас 24/7.</p>
     <div class="hero-cta">
       <a class="btn btn-primary" href="https://instagram.com/coop.kz" target="_blank">Написать в Instagram →</a>
       <a class="btn btn-ghost" href="#pricing">Смотреть тарифы</a>
     </div>
     <div class="hero-cta" style="margin-top:14px">
-      <div class="demo-cta-row">
-        <a class="btn btn-ghost" href="#demo">Демо-видео</a>
-        <a class="btn btn-ghost" href="#try">Попробовать бота</a>
-      </div>
+      <a class="btn btn-ghost" href="#demo">Демо доставки</a>
+      <a class="btn btn-ghost" href="#demo">Демо салона</a>
     </div>
   </div>
 </header>
-
-<section id="why">
-  <div class="container">
-    <div class="sec-head">
-      <div class="eyebrow">Почему COOP</div>
-      <h2>Не шаблон, а решение под вас</h2>
-      <p>Мы не продаём конструктор — мы делаем работающего бота для вашего бизнеса</p>
-    </div>
-    <div class="benefits">
-      <div class="benefit">
-        <div class="ico">🔧</div>
-        <h3>Под ключ</h3>
-        <p>Сами настраиваем сценарий, меню и заявки.</p>
-      </div>
-      <div class="benefit">
-        <div class="ico">🎯</div>
-        <h3>Под ваш бизнес</h3>
-        <p>Каждый бот настроен под ваши услуги, цены и процессы — никакого шаблона.</p>
-      </div>
-      <div class="benefit">
-        <div class="ico">🤝</div>
-        <h3>После запуска</h3>
-        <p>Тестируем, объясняем и помогаем с правками.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
 <section id="how">
   <div class="container">
@@ -415,18 +379,11 @@ footer .logo{margin-bottom:10px}
           <button class="btn btn-primary" onclick="openModal('https://res.cloudinary.com/doc4xeng1/video/upload/saloon_coop.mp4')">Смотреть демо</button>
         </div>
       </div>
-      <div class="demo-card">
-        <h3>Бот для цветов</h3>
-        <p>Клиент пишет конкретный запрос или описывает повод — бот подбирает букет, считает стоимость и оформляет доставку.</p>
-        <div class="demo-btns">
-          <button class="btn btn-primary" onclick="openModal('')">Смотреть демо</button>
-        </div>
-      </div>
     </div>
   </div>
 </section>
 
-<section id="try" class="try" style="background:var(--bg2)">
+<section class="try" style="background:var(--bg2)">
   <div class="container">
     <div class="try-box">
       <h2>Попробуйте бота сами</h2>
@@ -434,7 +391,6 @@ footer .logo{margin-bottom:10px}
       <div class="try-btns">
         <a class="btn btn-primary" href="https://wa.me/77066328318" target="_blank">Попробовать доставку</a>
         <a class="btn btn-ghost soon-btn" id="soonBtn" href="#" data-tooltip="Скоро будет доступно">Попробовать салон</a>
-        <a class="btn btn-ghost" href="https://wa.me/77066119213" target="_blank">Попробовать цветы</a>
       </div>
     </div>
   </div>
@@ -493,19 +449,17 @@ footer .logo{margin-bottom:10px}
       <div class="tab active" data-niche="delivery">Доставка</div>
       <div class="tab" data-niche="salon">Салоны</div>
       <div class="tab" data-niche="resto">Рестораны</div>
-      <div class="tab" data-niche="flower">Цветы</div>
     </div>
     <div class="plans" id="plans"></div>
-    <p style="text-align:center;color:#cfd2d8;font-size:16px;margin-top:32px;max-width:720px;margin-left:auto;margin-right:auto;line-height:1.6">В стоимость входит не просто бот, а настройка под ваш бизнес: сценарий, меню или услуги, уведомления админам, тестирование и запуск.</p>
-    <p style="text-align:center;color:var(--muted);font-size:15px;margin-top:14px">Точная стоимость зависит от ниши, каналов и функций</p>
+    <p style="text-align:center;color:var(--muted);font-size:15px;margin-top:32px">Точная стоимость зависит от ниши, каналов и функций</p>
   </div>
 </section>
 
-<section id="contacts">
+<section id="contact">
   <div class="container">
     <div class="contact-box">
       <h2>Готовы перестать терять клиентов?</h2>
-      <p>Напишите нам в Instagram <span class="ig-handle">@COOP.kz</span> — подберём решение под ваш бизнес.</p>
+      <p>Напишите нам в Instagram <span class="ig-handle">@coop.kz</span> — подберём решение под ваш бизнес.</p>
       <div class="contact-btns">
         <a class="btn btn-ghost" href="https://wa.me/77066328318" target="_blank">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M.057 24l1.687-6.163a11.867 11.867 0 01-1.587-5.946C.16 5.335 5.495 0 12.05 0a11.82 11.82 0 018.413 3.488 11.82 11.82 0 013.48 8.414c-.003 6.557-5.338 11.892-11.893 11.892a11.9 11.9 0 01-5.688-1.448L.057 24zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884a9.86 9.86 0 001.51 5.26l-.999 3.648 3.978-1.607zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.247-.694.247-1.289.173-1.413z"/></svg>
@@ -543,24 +497,19 @@ footer .logo{margin-bottom:10px}
 <script>
 const data={
   delivery:[
-    {tier:'Mini',price:'80–120к',feat:['Приём заказов в чате','Каталог / меню','FAQ — ответы на частые вопросы','Уведомление вам о заказе']},
+    {tier:'Mini',price:'80–120к',feat:['Приём заказов в чате','Каталог / меню','Авто-ответы на частые вопросы','Уведомление вам о заказе']},
     {tier:'Middle',price:'150–220к',featured:true,feat:['Всё из Mini','Корзина и оформление заказа','Расчёт доставки по зонам','Интеграция WhatsApp + Instagram','Статусы заказа клиенту']},
-    {tier:'Pro',price:'250–350к',feat:['Всё из Middle','Онлайн-оплата в боте','CRM и история клиентов','Аналитика и отчёты','Рассылки и акции','AI-консультант — понимает любой вопрос клиента и отвечает без администратора']},
+    {tier:'Pro',price:'250–350к',feat:['Всё из Middle','Онлайн-оплата в боте','CRM и история клиентов','Аналитика и отчёты','Рассылки и акции']},
   ],
   salon:[
-    {tier:'Mini',price:'40–60к',feat:['Запись на услуги в чате','Список услуг и цен','FAQ — ответы на частые вопросы','Уведомление вам о записи']},
+    {tier:'Mini',price:'40–60к',feat:['Запись на услуги в чате','Список услуг и цен','Авто-ответы клиентам','Уведомление вам о записи']},
     {tier:'Basic',price:'80–120к',featured:true,feat:['Всё из Mini','Онлайн-расписание мастеров','Напоминания клиентам','WhatsApp + Instagram','Перенос и отмена записи']},
-    {tier:'Pro',price:'150–250к',feat:['Всё из Basic','Предоплата в боте','База клиентов и история','Аналитика загрузки','Рассылки и спецпредложения','AI-консультант — понимает любой вопрос клиента и отвечает без администратора']},
+    {tier:'Pro',price:'150–250к',feat:['Всё из Basic','Предоплата в боте','База клиентов и история','Аналитика загрузки','Рассылки и спецпредложения']},
   ],
   resto:[
-    {tier:'Mini',price:'60–80к',feat:['Приём заказов / брони','Меню в чате','FAQ — ответы на частые вопросы','Уведомление вам о заказе']},
+    {tier:'Mini',price:'60–80к',feat:['Приём заказов / брони','Меню в чате','Авто-ответы','Уведомление вам о заказе']},
     {tier:'Basic',price:'100–150к',featured:true,feat:['Всё из Mini','Корзина и оформление','Бронь столиков','WhatsApp + Instagram','Статусы заказа клиенту']},
-    {tier:'Pro',price:'180–250к',feat:['Всё из Basic','Онлайн-оплата','CRM гостей','Аналитика и отчёты','Акции и рассылки','AI-консультант — понимает любой вопрос клиента и отвечает без администратора']},
-  ],
-  flower:[
-    {tier:'Mini',price:'60–90к',feat:['Приём заказов на доставку','Каталог букетов и цены','FAQ — ответы на частые вопросы','Уведомление вам о заказе']},
-    {tier:'Middle',price:'100–150к',featured:true,feat:['Всё из Mini','Подбор букета по поводу','Расчёт стоимости в боте','WhatsApp + Instagram','Статусы доставки клиенту']},
-    {tier:'Pro',price:'170–250к',feat:['Всё из Middle','Онлайн-оплата в боте','CRM и история клиентов','Аналитика и отчёты','Рассылки и акции','AI-консультант — понимает любой вопрос клиента и отвечает без администратора']},
+    {tier:'Pro',price:'180–250к',feat:['Всё из Basic','Онлайн-оплата','CRM гостей','Аналитика и отчёты','Акции и рассылки']},
   ],
 };
 const plansEl=document.getElementById('plans');
