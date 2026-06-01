@@ -253,6 +253,14 @@ section{padding:90px 0}
   transition:.2s;
 }
 .modal-close:hover{background:rgba(255,255,255,.12)}
+.toast{
+  position:fixed;left:50%;bottom:30px;transform:translateX(-50%) translateY(20px);
+  background:var(--card);color:var(--text);border:1px solid var(--border2);
+  padding:14px 22px;border-radius:12px;font-size:15px;font-weight:500;
+  box-shadow:0 12px 36px rgba(0,0,0,.5);z-index:200;
+  opacity:0;pointer-events:none;transition:.3s;
+}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
 /* SOON tooltip + popup */
 .soon-btn{position:relative}
@@ -386,8 +394,8 @@ footer .logo{margin-bottom:10px}
       <h2>Попробуйте бота сами</h2>
       <p>Перейдите в WhatsApp и напишите боту — это живая демо-версия.</p>
       <div class="try-btns">
-        <a class="btn btn-primary" href="https://wa.me/77066328318" target="_blank">Попробовать доставку</a>
-        <a class="btn btn-ghost soon-btn" id="soonBtn" href="#" data-tooltip="Скоро будет доступно">Попробовать салон</a>
+        <a class="btn btn-primary" href="#" onclick="showToast(event)">Попробовать доставку</a>
+        <a class="btn btn-ghost" href="#" onclick="showToast(event)">Попробовать салон</a>
         <a class="btn btn-ghost" href="https://wa.me/77066119213" target="_blank">Попробовать цветы</a>
       </div>
     </div>
@@ -535,6 +543,17 @@ document.querySelectorAll('.tab').forEach(t=>{
   });
 });
 render('delivery');
+
+let toastTimer;
+function showToast(e){
+  if(e)e.preventDefault();
+  let t=document.getElementById('appToast');
+  if(!t){t=document.createElement('div');t.id='appToast';t.className='toast';document.body.appendChild(t);}
+  t.textContent='⏳ Бот временно недоступен';
+  t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>t.classList.remove('show'),2500);
+}
 
 const modal=document.getElementById('videoModal');
 const player=document.getElementById('videoPlayer');
