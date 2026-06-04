@@ -387,6 +387,68 @@ section{padding:90px 0;scroll-margin-top:64px}
 }
 .soon-popup.show{opacity:1;transform:translateX(-50%) translateY(0)}
 
+/* ROI STRIP */
+.roi-strip{
+  display:flex;align-items:center;justify-content:center;gap:0;
+  margin-top:48px;background:rgba(255,255,255,.03);
+  border:1px solid var(--border);border-radius:20px;padding:28px 32px;flex-wrap:wrap;gap:8px;
+}
+.roi-item{display:flex;flex-direction:column;align-items:center;gap:4px;flex:1;min-width:100px}
+.roi-num{font-size:clamp(28px,4vw,40px);font-weight:800;letter-spacing:-1px;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.roi-label{font-size:13px;color:var(--muted);text-align:center}
+.roi-div{width:1px;height:40px;background:var(--border2);flex-shrink:0;margin:0 16px}
+@media(max-width:560px){.roi-div{display:none}.roi-strip{gap:20px}}
+
+/* CASES */
+.cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:880px){.cases-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+.case-card{
+  background:var(--card);border:1px solid var(--border);border-radius:20px;
+  padding:28px 26px;display:flex;flex-direction:column;gap:12px;
+  position:relative;transition:.25s;
+}
+.case-card:hover{transform:translateY(-4px);border-color:transparent;box-shadow:0 0 0 1px rgba(124,92,255,.4),0 16px 40px rgba(124,92,255,.1)}
+.case-soon{opacity:.7}
+.case-soon-badge{
+  position:absolute;top:16px;right:16px;
+  background:rgba(124,92,255,.2);border:1px solid rgba(124,92,255,.4);
+  color:#a78bfa;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;
+  letter-spacing:.5px;text-transform:uppercase;
+}
+.case-niche{font-size:13px;color:var(--muted);font-weight:600}
+.case-placeholder-title{font-size:18px;font-weight:700;color:var(--text)}
+.case-placeholder-desc{font-size:14px;color:var(--muted);line-height:1.6;flex:1}
+.case-metrics{display:flex;gap:0;border-top:1px solid var(--border);padding-top:16px;margin-top:4px}
+.case-metric{flex:1;text-align:center}
+.case-metric span{display:block;font-size:22px;font-weight:800;color:rgba(255,255,255,.25)}
+.case-metric small{font-size:11px;color:var(--muted)}
+.cases-cta-hint{text-align:center;margin-top:32px;font-size:15px;color:var(--muted)}
+
+/* FAQ */
+.faq-list{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:8px}
+.faq-item{background:var(--card);border:1px solid var(--border);border-radius:16px;overflow:hidden;transition:.2s}
+.faq-item.open{border-color:rgba(124,92,255,.35);box-shadow:0 0 0 1px rgba(124,92,255,.15)}
+.faq-q{
+  width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:20px 24px;background:none;border:none;color:var(--text);
+  font-size:16px;font-weight:600;cursor:pointer;text-align:left;
+}
+.faq-q:hover{color:var(--accent2)}
+.faq-icon{
+  width:24px;height:24px;border-radius:50%;flex-shrink:0;
+  background:rgba(124,92,255,.15);border:1px solid rgba(124,92,255,.3);
+  color:var(--accent2);font-size:16px;font-weight:700;
+  display:flex;align-items:center;justify-content:center;
+  transition:.25s;line-height:1;
+}
+.faq-item.open .faq-icon{transform:rotate(45deg);background:rgba(124,92,255,.25)}
+.faq-a{
+  max-height:0;overflow:hidden;
+  padding:0 24px;color:var(--muted);font-size:15px;line-height:1.7;
+  transition:max-height .35s cubic-bezier(.4,0,.2,1),padding .35s;
+}
+.faq-item.open .faq-a{max-height:200px;padding:0 24px 20px}
+
 /* FADE IN */
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
@@ -414,6 +476,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     <div class="nav-links">
       <a href="#how">Как работает</a>
       <a href="#pricing">Тарифы</a>
+      <a href="#faq">FAQ</a>
       <a href="#contact">Контакты</a>
     </div>
     <a class="nav-cta" href="https://wa.me/77066328318" target="_blank">Написать нам →</a>
@@ -592,6 +655,113 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
     <div class="plans" id="plans"></div>
     <p style="text-align:center;color:var(--muted);font-size:15px;margin-top:32px">Точная стоимость зависит от ниши, каналов и функций</p>
+    <div class="roi-strip">
+      <div class="roi-item"><span class="roi-num">1–2</span><span class="roi-label">недели на запуск</span></div>
+      <div class="roi-div"></div>
+      <div class="roi-item"><span class="roi-num">24/7</span><span class="roi-label">без менеджера</span></div>
+      <div class="roi-div"></div>
+      <div class="roi-item"><span class="roi-num">0</span><span class="roi-label">пропущенных заявок</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow">Кейсы</div>
+      <h2>Реальные результаты</h2>
+      <p>Скоро здесь появятся истории бизнесов, которые уже работают с ботами</p>
+    </div>
+    <div class="cases-grid">
+      <div class="case-card case-soon">
+        <div class="case-soon-badge">Скоро</div>
+        <div class="case-niche">🚚 Доставка еды</div>
+        <div class="case-placeholder-title">Кейс: служба доставки</div>
+        <p class="case-placeholder-desc">Как бот принял первые заказы без единого звонка менеджеру</p>
+        <div class="case-metrics">
+          <div class="case-metric"><span>—</span><small>заявок в день</small></div>
+          <div class="case-metric"><span>—</span><small>ответ за</small></div>
+          <div class="case-metric"><span>—</span><small>окупаемость</small></div>
+        </div>
+      </div>
+      <div class="case-card case-soon">
+        <div class="case-soon-badge">Скоро</div>
+        <div class="case-niche">💅 Салон красоты</div>
+        <div class="case-placeholder-title">Кейс: салон красоты</div>
+        <p class="case-placeholder-desc">Онлайн-запись без администратора и без пропущенных клиентов</p>
+        <div class="case-metrics">
+          <div class="case-metric"><span>—</span><small>записей в день</small></div>
+          <div class="case-metric"><span>—</span><small>экономия времени</small></div>
+          <div class="case-metric"><span>—</span><small>окупаемость</small></div>
+        </div>
+      </div>
+      <div class="case-card case-soon">
+        <div class="case-soon-badge">Скоро</div>
+        <div class="case-niche">💐 Цветочный магазин</div>
+        <div class="case-placeholder-title">Кейс: магазин цветов</div>
+        <p class="case-placeholder-desc">Бот принимает заказы на доставку и подбирает букеты по поводу</p>
+        <div class="case-metrics">
+          <div class="case-metric"><span>—</span><small>заказов в день</small></div>
+          <div class="case-metric"><span>—</span><small>средний чек</small></div>
+          <div class="case-metric"><span>—</span><small>окупаемость</small></div>
+        </div>
+      </div>
+    </div>
+    <p class="cases-cta-hint">Хотите стать первым кейсом? <a href="https://wa.me/77066328318" target="_blank" style="color:var(--accent2);font-weight:600">Напишите нам →</a></p>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow">FAQ</div>
+      <h2>Частые вопросы</h2>
+      <p>Отвечаем на то, что обычно спрашивают перед запуском</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Сколько времени занимает запуск бота?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">От 1 до 2 недель с момента оплаты. Мы берём на себя всё: настройку, тексты, подключение к вашему WhatsApp или Instagram. Вам нужно только предоставить информацию о бизнесе.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Что если бот ответит клиенту неправильно?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Бот работает строго по сценарию, который мы согласовываем с вами до запуска. Если клиент выходит за рамки сценария — бот вежливо переключает на менеджера. Никаких выдуманных ответов.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Мне нужно разбираться в технологиях?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Нет. Вы получаете готового бота и просто получаете заявки. Если нужно что-то изменить — пишете нам, мы обновляем.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Бот работает только в WhatsApp?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Нет — подключаем WhatsApp, Instagram Direct и Telegram. Можно сразу все три канала или начать с одного.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Как я буду получать заказы и записи?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Сразу в WhatsApp или Telegram — бот отправляет вам уведомление с готовой заявкой: имя клиента, контакт, детали заказа. Ничего лишнего, сразу к делу.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">
+          Есть ли абонентская плата?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-a">Стоимость указана как единоразовая — платите один раз за разработку и настройку. Возможные расходы на платформу обсуждаем индивидуально в зависимости от выбранного решения.</div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -714,18 +884,25 @@ modal.addEventListener('click',e=>{if(e.target===modal)closeModal()});
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&modal.classList.contains('open'))closeModal()});
 
 const io=new IntersectionObserver((entries)=>{
-  entries.forEach((e,i)=>{
+  entries.forEach(e=>{
     if(e.isIntersecting){
       setTimeout(()=>e.target.classList.add('visible'),e.target.dataset.delay||0);
       io.unobserve(e.target);
     }
   });
-},{threshold:0.12});
-document.querySelectorAll('.step,.benefit,.demo-card,.plan,.sec-head').forEach((el,i)=>{
+},{threshold:0.1});
+document.querySelectorAll('.step,.benefit,.demo-card,.plan,.sec-head,.case-card,.faq-item,.roi-strip').forEach((el,i)=>{
   el.classList.add('fade-up');
-  el.dataset.delay=((i%3)*80);
+  el.dataset.delay=((i%3)*70);
   io.observe(el);
 });
+
+function toggleFaq(btn){
+  const item=btn.closest('.faq-item');
+  const isOpen=item.classList.contains('open');
+  document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
+  if(!isOpen)item.classList.add('open');
+}
 
 const soonBtn=document.getElementById('soonBtn');
 const soonPopup=document.getElementById('soonPopup');
