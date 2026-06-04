@@ -35,8 +35,15 @@ a{color:inherit;text-decoration:none}
   font-weight:600;font-size:15px;cursor:pointer;
   border:none;transition:.2s;
 }
-.btn-primary{background:var(--grad);color:#0b0b10}
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,92,255,.35)}
+.btn-primary{background:var(--grad);color:#0b0b10;position:relative;overflow:hidden}
+.btn-primary::after{
+  content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  transform:skewX(-20deg);
+  animation:shimmer 3s infinite;
+}
+@keyframes shimmer{0%{left:-100%}60%,100%{left:160%}}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(124,92,255,.45)}
 .btn-ghost{background:rgba(255,255,255,.05);color:var(--text);border:1px solid var(--border2)}
 .btn-ghost:hover{background:rgba(255,255,255,.1)}
 
@@ -73,8 +80,15 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .hero::before{
   content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);
   width:900px;height:600px;
-  background:radial-gradient(ellipse at center,rgba(124,92,255,.22),transparent 60%);
+  background:radial-gradient(ellipse at center,rgba(124,92,255,.28),transparent 60%);
   filter:blur(20px);z-index:0;
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);
+  background-size:28px 28px;
+  mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 40%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 40%,transparent 100%);
 }
 .hero .container{position:relative;z-index:1}
 .badge{
@@ -96,10 +110,11 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 }
 .hero-cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;align-items:center}
 .hero-cta .btn-primary{font-size:1.05rem;padding:14px 28px}
-.price-badge{display:inline-block;background:rgba(124,92,255,.15);border:1px solid rgba(124,92,255,.35);color:var(--grad,#a78bfa);border-radius:20px;padding:6px 16px;font-size:.85rem;margin-bottom:20px}
-.trust-strip{background:rgba(255,255,255,.03);border-top:1px solid var(--border2);border-bottom:1px solid var(--border2);padding:18px 0}
-.trust-badges{display:flex;gap:24px;justify-content:center;flex-wrap:wrap}
-.trust-badge{color:rgba(255,255,255,.75);font-size:.85rem}
+.price-badge{display:inline-block;background:rgba(124,92,255,.15);border:1px solid rgba(124,92,255,.35);color:#a78bfa;border-radius:20px;padding:6px 16px;font-size:.85rem;margin-bottom:20px}
+.trust-strip{background:rgba(255,255,255,.025);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0}
+.trust-badges{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
+.trust-badge{color:rgba(255,255,255,.7);font-size:.85rem;display:flex;align-items:center;gap:8px}
+.trust-badge::before{content:"";width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80;flex-shrink:0}
 .hero-socials{display:flex;gap:14px;justify-content:center;margin-top:32px}
 .hero-socials a{
   width:48px;height:48px;border-radius:14px;
@@ -124,7 +139,7 @@ section{padding:90px 0}
   background:var(--card);border:1px solid var(--border);border-radius:18px;
   padding:32px 26px;position:relative;transition:.25s;
 }
-.step:hover{border-color:var(--border2);transform:translateY(-4px)}
+.step:hover{border-color:transparent;transform:translateY(-4px);box-shadow:0 0 0 1px rgba(124,92,255,.5),0 16px 40px rgba(124,92,255,.12)}
 .step .num{
   width:46px;height:46px;border-radius:12px;
   display:flex;align-items:center;justify-content:center;
@@ -148,7 +163,7 @@ section{padding:90px 0}
   background:var(--card);border:1px solid var(--border);border-radius:18px;
   padding:30px 26px;transition:.25s;
 }
-.benefit:hover{border-color:var(--border2);transform:translateY(-4px)}
+.benefit:hover{border-color:transparent;transform:translateY(-4px);box-shadow:0 0 0 1px rgba(124,92,255,.5),0 16px 40px rgba(124,92,255,.12)}
 .benefit .ico{
   width:54px;height:54px;border-radius:14px;
   display:flex;align-items:center;justify-content:center;font-size:26px;
@@ -298,7 +313,7 @@ footer .logo{margin-bottom:10px}
 
 <nav>
   <div class="container">
-    <div class="logo"><img src="logo.png" alt="coop" style="height:100px;filter:brightness(0) invert(1)"></div>
+    <div class="logo"><img src="logo.png" alt="coop" style="height:36px;filter:brightness(0) invert(1)"></div>
     <div class="nav-links">
       <a href="#how">Как работает</a>
       <a href="#pricing">Тарифы</a>
@@ -334,9 +349,9 @@ footer .logo{margin-bottom:10px}
 <div class="trust-strip">
   <div class="container">
     <div class="trust-badges">
-      <div class="trust-badge">✓ Можно попробовать живого бота</div>
-      <div class="trust-badge">✓ Заявка приходит прямо админу</div>
-      <div class="trust-badge">✓ WhatsApp / Instagram / Telegram</div>
+      <div class="trust-badge">Можно попробовать живого бота</div>
+      <div class="trust-badge">Заявка приходит прямо админу</div>
+      <div class="trust-badge">WhatsApp / Instagram / Telegram</div>
     </div>
   </div>
 </div>
