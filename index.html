@@ -58,6 +58,17 @@ nav{
 nav .container{display:flex;align-items:center;justify-content:space-between;height:64px;gap:16px}
 .logo{font-weight:700;font-size:19px;letter-spacing:-.5px;flex-shrink:0}
 .logo span{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-animated{
+  font-size:28px;font-weight:800;letter-spacing:-1.5px;
+  background:linear-gradient(90deg,#7c5cff,#5ce1ff,#a78bff,#7c5cff);
+  background-size:300% 100%;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:logo-flow 4s linear infinite;
+}
+@keyframes logo-flow{
+  0%{background-position:0% 50%}
+  100%{background-position:300% 50%}
+}
 .nav-links{display:flex;gap:28px;font-size:14px;color:var(--muted)}
 .nav-links a:hover{color:var(--text)}
 @media(max-width:720px){.nav-links{display:none}}
@@ -473,7 +484,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
 
 <nav>
   <div class="container">
-    <div class="logo"><img src="logo-wordmark.svg" alt="coop" style="height:36px"></div>
+    <div class="logo logo-animated">coop</div>
     <div class="nav-links">
       <a href="#how">Как работает</a>
       <a href="#pricing">Тарифы</a>
