@@ -4,7 +4,23 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>COOP — Автоматизация бизнеса через WhatsApp и Instagram</title>
+<meta name="description" content="Боты для бизнеса в WhatsApp, Instagram и Telegram. Принимают заказы и записи 24/7, передают готовые заявки админу. Запуск за 1–2 недели.">
 <link rel="icon" href="Loggo.png" type="image/png">
+
+<!-- Open Graph / соцсети и мессенджеры -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://coopkz.vercel.app/">
+<meta property="og:title" content="COOP — боты, которые не дают клиентам уходить к конкурентам">
+<meta property="og:description" content="Боты для WhatsApp, Instagram и Telegram. Принимают заказы и записи 24/7, передают готовые заявки админу. Запуск за 1–2 недели.">
+<meta property="og:image" content="https://coopkz.vercel.app/Loggo.png">
+<meta property="og:locale" content="ru_RU">
+<meta property="og:site_name" content="COOP">
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="COOP — боты для бизнеса в мессенджерах">
+<meta name="twitter:description" content="Принимают заказы и записи 24/7, передают готовые заявки админу. Запуск за 1–2 недели.">
+<meta name="twitter:image" content="https://coopkz.vercel.app/Loggo.png">
 <style>
 :root{
   --bg:#08090c;
@@ -145,6 +161,55 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .hero-socials a:hover{color:var(--text);transform:translateY(-3px);border-color:var(--accent);background:rgba(124,92,255,.12)}
 .hero-socials svg{width:22px;height:22px}
 
+/* HERO PHONE MOCKUP */
+.hero-phone{margin-top:64px;display:flex;justify-content:center;perspective:1400px}
+.phone-frame{
+  position:relative;width:320px;max-width:88vw;
+  background:#0c0e13;border:1px solid rgba(255,255,255,.12);
+  border-radius:38px;padding:14px 12px 18px;
+  box-shadow:0 40px 100px rgba(124,92,255,.25),0 0 0 1px rgba(255,255,255,.04),inset 0 1px 0 rgba(255,255,255,.06);
+  transform:rotateX(4deg);
+}
+.phone-notch{
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
+  width:110px;height:22px;background:#0c0e13;border-radius:0 0 16px 16px;z-index:3;
+}
+.chat-header{
+  display:flex;align-items:center;gap:10px;
+  padding:14px 12px 12px;border-bottom:1px solid rgba(255,255,255,.08);
+  background:linear-gradient(180deg,rgba(124,92,255,.12),transparent);
+  border-radius:26px 26px 0 0;
+}
+.chat-avatar{
+  width:38px;height:38px;border-radius:50%;flex-shrink:0;
+  background:var(--grad);color:#0b0b10;font-weight:800;font-size:18px;
+  display:flex;align-items:center;justify-content:center;
+}
+.chat-name{font-size:14px;font-weight:700;color:var(--text);text-align:left}
+.chat-status{font-size:11px;color:#4ade80;display:flex;align-items:center;gap:5px}
+.online-dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 6px #4ade80}
+.chat-body{
+  height:300px;padding:16px 12px;display:flex;flex-direction:column;gap:10px;
+  overflow:hidden;
+}
+.msg{
+  max-width:80%;padding:9px 13px;border-radius:16px;font-size:13px;line-height:1.45;
+  opacity:0;transform:translateY(10px);animation:msg-in .4s forwards;text-align:left;
+}
+@keyframes msg-in{to{opacity:1;transform:translateY(0)}}
+.msg-bot{align-self:flex-start;background:rgba(255,255,255,.08);color:var(--text);border-bottom-left-radius:5px}
+.msg-user{align-self:flex-end;background:var(--grad);color:#0b0b10;font-weight:500;border-bottom-right-radius:5px}
+.msg-typing{
+  align-self:flex-start;background:rgba(255,255,255,.08);
+  padding:12px 14px;border-radius:16px;border-bottom-left-radius:5px;
+  display:flex;gap:4px;opacity:0;animation:msg-in .3s forwards;
+}
+.msg-typing span{width:6px;height:6px;border-radius:50%;background:var(--muted);animation:typing 1.2s infinite}
+.msg-typing span:nth-child(2){animation-delay:.2s}
+.msg-typing span:nth-child(3){animation-delay:.4s}
+@keyframes typing{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
+@media(max-width:560px){.hero-phone{margin-top:48px}.phone-frame{transform:none}}
+
 /* SECTION */
 section{padding:90px 0;scroll-margin-top:64px}
 .eyebrow{
@@ -192,9 +257,12 @@ section{padding:90px 0;scroll-margin-top:64px}
 .benefit:hover{border-color:transparent;transform:translateY(-4px);box-shadow:0 0 0 1px rgba(124,92,255,.5),0 16px 40px rgba(124,92,255,.12)}
 .benefit .ico{
   width:54px;height:54px;border-radius:14px;
-  display:flex;align-items:center;justify-content:center;font-size:26px;
+  display:flex;align-items:center;justify-content:center;
   margin-bottom:18px;background:rgba(124,92,255,.15);border:1px solid rgba(124,92,255,.3);
+  color:var(--accent2);transition:.25s;
 }
+.benefit .ico svg{width:26px;height:26px}
+.benefit:hover .ico{background:rgba(124,92,255,.25);transform:scale(1.05)}
 .benefit h3{font-size:18px;margin-bottom:8px}
 .benefit p{color:var(--muted);font-size:15px}
 
@@ -459,7 +527,7 @@ section{padding:90px 0;scroll-margin-top:64px}
   padding:0 24px;color:var(--muted);font-size:15px;line-height:1.7;
   transition:max-height .35s cubic-bezier(.4,0,.2,1),padding .35s;
 }
-.faq-item.open .faq-a{max-height:200px;padding:0 24px 20px}
+.faq-item.open .faq-a{max-height:400px;padding:0 24px 20px}
 
 /* FADE IN */
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1)}
@@ -507,6 +575,20 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     <div class="hero-cta">
       <a class="btn btn-primary" href="#try">Попробовать бота →</a>
       <a class="btn btn-ghost" href="#demo">Смотреть демо →</a>
+    </div>
+
+    <div class="hero-phone">
+      <div class="phone-frame">
+        <div class="phone-notch"></div>
+        <div class="chat-header">
+          <div class="chat-avatar">C</div>
+          <div class="chat-meta">
+            <div class="chat-name">COOP Бот</div>
+            <div class="chat-status"><span class="online-dot"></span>онлайн</div>
+          </div>
+        </div>
+        <div class="chat-body" id="chatBody"></div>
+      </div>
     </div>
   </div>
 </header>
@@ -610,32 +692,32 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
     <div class="benefits">
       <div class="benefit">
-        <div class="ico">🕒</div>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
         <h3>Ответ клиентам 24/7</h3>
         <p>Бот отвечает мгновенно в любое время — ночью, в выходные и в час пик.</p>
       </div>
       <div class="benefit">
-        <div class="ico">📥</div>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14v5a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-5"/><path d="M7 11l5 5 5-5"/><path d="M12 3v13"/></svg></div>
         <h3>Меньше пропущенных заявок</h3>
         <p>Ни одно сообщение не теряется — каждый клиент получает ответ и доходит до заказа.</p>
       </div>
       <div class="benefit">
-        <div class="ico">📲</div>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="2" width="12" height="20" rx="3"/><path d="M11 18h2"/></svg></div>
         <h3>Заказы и записи сразу у админа</h3>
         <p>Готовая заявка со всеми данными мгновенно приходит администратору.</p>
       </div>
       <div class="benefit">
-        <div class="ico">✍️</div>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/><path d="M8 9h8M8 13h5"/></svg></div>
         <h3>Меньше ручной переписки</h3>
         <p>Бот берёт на себя типовые вопросы, освобождая время сотрудников.</p>
       </div>
       <div class="benefit">
-        <div class="ico">🔔</div>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
         <h3>Статусы и уведомления</h3>
         <p>Клиент видит статус заказа, а вы — напоминания о записях и новых обращениях.</p>
       </div>
       <div class="benefit">
-        <div class="ico">📊</div>
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><rect x="7" y="11" width="3" height="6"/><rect x="12" y="7" width="3" height="10"/><rect x="17" y="13" width="3" height="4"/></svg></div>
         <h3>Аналитика для владельца</h3>
         <p>Отчёты по заказам, записям и загрузке помогают видеть картину целиком.</p>
       </div>
@@ -907,6 +989,49 @@ function toggleFaq(btn){
   document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));
   if(!isOpen)item.classList.add('open');
 }
+
+/* Hero chat animation */
+const chatBody=document.getElementById('chatBody');
+const chatScript=[
+  {type:'bot',text:'Здравствуйте! 👋 Я бот COOP. Чем могу помочь?'},
+  {type:'user',text:'Хочу заказать доставку'},
+  {type:'bot',text:'Отлично! Вот наше меню 🍔 Что добавить в заказ?'},
+  {type:'user',text:'2 бургера и колу'},
+  {type:'bot',text:'Готово ✅ Сумма: 4 200 ₸. Передаю заказ администратору!'},
+];
+function renderChat(){
+  if(!chatBody)return;
+  chatBody.innerHTML='';
+  let delay=400;
+  chatScript.forEach((m,i)=>{
+    if(m.type==='bot'){
+      setTimeout(()=>{
+        const t=document.createElement('div');
+        t.className='msg-typing';t.innerHTML='<span></span><span></span><span></span>';
+        chatBody.appendChild(t);
+        chatBody.scrollTop=chatBody.scrollHeight;
+        setTimeout(()=>{
+          t.remove();
+          const b=document.createElement('div');
+          b.className='msg msg-bot';b.textContent=m.text;
+          chatBody.appendChild(b);
+          chatBody.scrollTop=chatBody.scrollHeight;
+        },700);
+      },delay);
+      delay+=700+800;
+    }else{
+      setTimeout(()=>{
+        const b=document.createElement('div');
+        b.className='msg msg-user';b.textContent=m.text;
+        chatBody.appendChild(b);
+        chatBody.scrollTop=chatBody.scrollHeight;
+      },delay);
+      delay+=900;
+    }
+  });
+  setTimeout(renderChat,delay+3500);
+}
+renderChat();
 
 const soonBtn=document.getElementById('soonBtn');
 const soonPopup=document.getElementById('soonPopup');
