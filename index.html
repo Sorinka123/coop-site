@@ -193,7 +193,13 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .chat-body{
   height:300px;padding:16px 12px;display:flex;flex-direction:column;gap:10px;
   overflow:hidden;
+  transition:opacity .3s ease,transform .3s ease;
 }
+.chat-body.switching{opacity:0;transform:translateX(-28px)}
+.chat-header{transition:opacity .3s ease}
+.chat-header.switching{opacity:.25}
+.chat-avatar{transition:transform .3s ease}
+.chat-header.switching .chat-avatar{transform:scale(.7)}
 .msg{
   max-width:80%;padding:9px 13px;border-radius:16px;font-size:13px;line-height:1.45;
   opacity:0;transform:translateY(10px);animation:msg-in .4s forwards;text-align:left;
@@ -1066,9 +1072,16 @@ function renderChat(){
     }
   });
   setTimeout(()=>{
-    scenarioIndex=(scenarioIndex+1)%chatScenarios.length;
-    renderChat();
-  },delay+3000);
+    const header=chatAvatar.closest('.chat-header');
+    chatBody.classList.add('switching');
+    if(header)header.classList.add('switching');
+    setTimeout(()=>{
+      scenarioIndex=(scenarioIndex+1)%chatScenarios.length;
+      chatBody.classList.remove('switching');
+      if(header)header.classList.remove('switching');
+      renderChat();
+    },340);
+  },delay+1600);
 }
 renderChat();
 
