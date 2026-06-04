@@ -85,10 +85,10 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 }
 .hero::after{
   content:"";position:absolute;inset:0;z-index:0;
-  background-image:radial-gradient(rgba(255,255,255,.045) 1px,transparent 1px);
-  background-size:28px 28px;
-  mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 40%,transparent 100%);
-  -webkit-mask-image:radial-gradient(ellipse 80% 70% at 50% 0%,black 40%,transparent 100%);
+  background-image:radial-gradient(rgba(255,255,255,.06) 1px,transparent 1px);
+  background-size:32px 32px;
+  mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 60%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 60%,transparent 100%);
 }
 .hero .container{position:relative;z-index:1}
 .badge{
@@ -177,14 +177,21 @@ section{padding:90px 0}
 .benefit p{color:var(--muted);font-size:15px}
 
 /* PRICING */
-.tabs{display:flex;justify-content:center;gap:8px;margin-bottom:44px;flex-wrap:wrap;padding:4px 6px;overflow:visible}
-.tab{
-  padding:11px 22px;border-radius:100px;cursor:pointer;
-  background:rgba(255,255,255,.04);border:1px solid var(--border);
-  color:var(--muted);font-weight:600;font-size:15px;transition:.2s;
+.tabs{
+  display:inline-flex;justify-content:center;gap:6px;margin-bottom:44px;
+  flex-wrap:wrap;padding:6px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:20px;
 }
-.tab.active{background:var(--grad);color:#0b0b10;border:1px solid transparent;border-radius:100px;font-weight:700}
-.tab:not(.active):hover{color:var(--text);border-color:var(--border2)}
+.tabs-wrap{display:flex;justify-content:center;margin-bottom:44px}
+.tabs-wrap .tabs{margin-bottom:0}
+.tab{
+  padding:12px 26px;border-radius:14px;cursor:pointer;
+  background:transparent;border:1px solid transparent;
+  color:var(--muted);font-weight:600;font-size:15px;transition:.2s;
+  display:inline-flex;align-items:center;gap:8px;
+}
+.tab.active{background:var(--grad);color:#0b0b10;font-weight:700;box-shadow:0 4px 16px rgba(124,92,255,.35)}
+.tab:not(.active):hover{color:var(--text);background:rgba(255,255,255,.06)}
 .plans{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:880px){.plans{grid-template-columns:1fr;max-width:420px;margin:0 auto}}
 .plan{
@@ -244,12 +251,58 @@ section{padding:90px 0}
 /* TRY */
 .try{text-align:center}
 .try-box{
-  background:linear-gradient(135deg,rgba(124,92,255,.12),rgba(92,225,255,.08));
-  border:1px solid var(--border2);border-radius:28px;padding:56px 32px;
+  position:relative;overflow:hidden;
+  background:linear-gradient(135deg,rgba(124,92,255,.18) 0%,rgba(92,225,255,.1) 100%);
+  border:1px solid rgba(124,92,255,.4);border-radius:28px;padding:72px 32px 64px;
+  box-shadow:0 0 100px rgba(124,92,255,.15),inset 0 1px 0 rgba(255,255,255,.08);
 }
-.try-box h2{font-size:clamp(26px,5vw,38px);font-weight:800;letter-spacing:-1px;margin-bottom:12px}
-.try-box p{color:var(--muted);font-size:17px;margin-bottom:30px}
-.try-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+.try-box::before{
+  content:"";position:absolute;inset:0;z-index:0;
+  background-image:radial-gradient(rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:24px 24px;
+  mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,black 30%,transparent 100%);
+  -webkit-mask-image:radial-gradient(ellipse 90% 80% at 50% 0%,black 30%,transparent 100%);
+}
+.try-box::after{
+  content:"";position:absolute;top:-120px;left:50%;transform:translateX(-50%);
+  width:600px;height:300px;
+  background:radial-gradient(ellipse at center,rgba(124,92,255,.35),transparent 65%);
+  filter:blur(30px);z-index:0;pointer-events:none;
+}
+.try-box>*{position:relative;z-index:1}
+.try-label{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:5px 14px;border-radius:100px;
+  border:1px solid rgba(124,92,255,.4);background:rgba(124,92,255,.15);
+  font-size:13px;color:#a78bfa;font-weight:600;letter-spacing:.5px;
+  margin-bottom:20px;
+}
+.try-label .dot{width:6px;height:6px;border-radius:50%;background:#4ade80;box-shadow:0 0 8px #4ade80}
+.try-box h2{font-size:clamp(28px,5vw,42px);font-weight:800;letter-spacing:-1.5px;margin-bottom:12px}
+.try-box p{color:rgba(255,255,255,.6);font-size:17px;margin-bottom:36px;max-width:480px;margin-left:auto;margin-right:auto}
+.try-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.try-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:14px 26px;border-radius:14px;font-weight:700;font-size:15px;
+  cursor:pointer;border:none;text-decoration:none;transition:.2s;
+}
+.try-btn-primary{
+  background:var(--grad);color:#0b0b10;
+  position:relative;overflow:hidden;
+  box-shadow:0 8px 24px rgba(124,92,255,.4);
+}
+.try-btn-primary::after{
+  content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.25),transparent);
+  transform:skewX(-20deg);animation:shimmer 3s infinite;
+}
+.try-btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(124,92,255,.55)}
+.try-btn-ghost{
+  background:rgba(255,255,255,.07);color:var(--text);
+  border:1px solid rgba(255,255,255,.15);
+}
+.try-btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.25);transform:translateY(-2px)}
+.try-btn-emoji{font-size:20px;line-height:1}
 
 /* VIDEO MODAL */
 .modal{
@@ -418,7 +471,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
         </div>
       </div>
       <div class="demo-card">
-        <div class="demo-ico">💆</div>
+        <div class="demo-ico">💅</div>
         <h3>Бот для салона</h3>
         <p>Клиент выбирает услугу, мастера, дату и время. Бот собирает данные и заявка сразу приходит администратору.</p>
         <div class="demo-btns">
@@ -440,12 +493,13 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
 <section class="try" style="background:var(--bg2)">
   <div class="container">
     <div class="try-box">
+      <div class="try-label"><span class="dot"></span>Живые боты — можно написать прямо сейчас</div>
       <h2>Попробуйте бота сами</h2>
-      <p>Перейдите в WhatsApp и напишите боту — это живая демо-версия.</p>
+      <p>Напишите — и через секунду получите ответ от реального бота. Без регистрации и звонков.</p>
       <div class="try-btns">
-        <a class="btn btn-primary" href="https://wa.me/77776761927" target="_blank">Попробовать доставку</a>
-        <a class="btn btn-ghost" href="https://wa.me/77066328318" target="_blank">Попробовать салон</a>
-        <a class="btn btn-ghost" href="https://wa.me/77066119213" target="_blank">Попробовать цветы</a>
+        <a class="try-btn try-btn-primary" href="https://wa.me/77776761927" target="_blank"><span class="try-btn-emoji">🚚</span> Попробовать доставку</a>
+        <a class="try-btn try-btn-ghost" href="https://wa.me/77066328318" target="_blank"><span class="try-btn-emoji">💅</span> Попробовать салон</a>
+        <a class="try-btn try-btn-ghost" href="https://wa.me/77066119213" target="_blank"><span class="try-btn-emoji">💐</span> Попробовать цветы</a>
       </div>
     </div>
   </div>
@@ -500,10 +554,12 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
       <h2>Под вашу нишу</h2>
       <p>Выберите направление и подходящий пакет автоматизации</p>
     </div>
-    <div class="tabs">
-      <div class="tab active" data-niche="delivery">Доставка</div>
-      <div class="tab" data-niche="salon">Салоны</div>
-      <div class="tab" data-niche="flower">Цветы</div>
+    <div class="tabs-wrap">
+      <div class="tabs">
+        <div class="tab active" data-niche="delivery">🚚 Доставка</div>
+        <div class="tab" data-niche="salon">💅 Салоны</div>
+        <div class="tab" data-niche="flower">💐 Цветы</div>
+      </div>
     </div>
     <div class="plans" id="plans"></div>
     <p style="text-align:center;color:var(--muted);font-size:15px;margin-top:32px">Точная стоимость зависит от ниши, каналов и функций</p>
