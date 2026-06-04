@@ -583,9 +583,9 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
       <div class="phone-frame">
         <div class="phone-notch"></div>
         <div class="chat-header">
-          <div class="chat-avatar">C</div>
+          <div class="chat-avatar" id="chatAvatar">🚚</div>
           <div class="chat-meta">
-            <div class="chat-name">COOP Бот</div>
+            <div class="chat-name" id="chatName">Бот доставки</div>
             <div class="chat-status"><span class="online-dot"></span>онлайн</div>
           </div>
         </div>
@@ -992,20 +992,54 @@ function toggleFaq(btn){
   if(!isOpen)item.classList.add('open');
 }
 
-/* Hero chat animation */
+/* Hero chat animation — ротация сценариев по нишам */
 const chatBody=document.getElementById('chatBody');
-const chatScript=[
-  {type:'bot',text:'Здравствуйте! 👋 Я бот COOP. Чем могу помочь?'},
-  {type:'user',text:'Хочу заказать доставку'},
-  {type:'bot',text:'Отлично! Вот наше меню 🍔 Что добавить в заказ?'},
-  {type:'user',text:'2 бургера и колу'},
-  {type:'bot',text:'Готово ✅ Сумма: 4 200 ₸. Передаю заказ администратору!'},
+const chatAvatar=document.getElementById('chatAvatar');
+const chatName=document.getElementById('chatName');
+
+/* Чтобы добавить новую нишу — просто допишите объект в этот массив */
+const chatScenarios=[
+  {
+    avatar:'🚚',name:'Бот доставки',
+    script:[
+      {type:'bot',text:'Здравствуйте! 👋 Чем могу помочь?'},
+      {type:'user',text:'Хочу заказать доставку'},
+      {type:'bot',text:'Отлично! Вот меню 🍔 Что добавить в заказ?'},
+      {type:'user',text:'2 бургера и колу'},
+      {type:'bot',text:'Готово ✅ Сумма 4 200 ₸. Передаю заказ админу!'},
+    ]
+  },
+  {
+    avatar:'💅',name:'Бот салона',
+    script:[
+      {type:'bot',text:'Здравствуйте! 💅 Хотите записаться?'},
+      {type:'user',text:'Да, на маникюр'},
+      {type:'bot',text:'Есть окно завтра в 14:00 и 16:30. Какое удобнее?'},
+      {type:'user',text:'14:00'},
+      {type:'bot',text:'Записала ✅ Напомню за час. Заявка у админа!'},
+    ]
+  },
+  {
+    avatar:'💐',name:'Бот цветов',
+    script:[
+      {type:'bot',text:'Здравствуйте! 💐 Подберём букет?'},
+      {type:'user',text:'Нужен букет на день рождения'},
+      {type:'bot',text:'Есть нежные пионы и яркие розы 🌹 Какой бюджет?'},
+      {type:'user',text:'до 15 000 ₸'},
+      {type:'bot',text:'Подобрал ✅ Оформляю доставку, заявка у админа!'},
+    ]
+  },
 ];
+
+let scenarioIndex=0;
 function renderChat(){
   if(!chatBody)return;
+  const sc=chatScenarios[scenarioIndex];
+  chatAvatar.textContent=sc.avatar;
+  chatName.textContent=sc.name;
   chatBody.innerHTML='';
   let delay=400;
-  chatScript.forEach((m,i)=>{
+  sc.script.forEach(m=>{
     if(m.type==='bot'){
       setTimeout(()=>{
         const t=document.createElement('div');
@@ -1031,7 +1065,10 @@ function renderChat(){
       delay+=900;
     }
   });
-  setTimeout(renderChat,delay+3500);
+  setTimeout(()=>{
+    scenarioIndex=(scenarioIndex+1)%chatScenarios.length;
+    renderChat();
+  },delay+3000);
 }
 renderChat();
 
