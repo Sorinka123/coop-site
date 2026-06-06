@@ -8,7 +8,10 @@
   // отключаем автоматическое восстановление позиции скролла браузером.
   if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
   window.addEventListener('load', function () {
-    if (!location.hash) window.scrollTo(0, 0);
+    if (!location.hash) window.scrollTo({top:0,behavior:'instant'});
+  });
+  window.addEventListener('pageshow', function(e) {
+    if (e.persisted && !location.hash) window.scrollTo({top:0,behavior:'instant'});
   });
 </script>
 <title>COOP — Боты для бизнеса в WhatsApp, Instagram и Telegram | Казахстан</title>
@@ -148,6 +151,14 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
   font-size:clamp(38px,7vw,68px);
   font-weight:800;line-height:1.05;letter-spacing:-2px;
   margin-bottom:22px;
+  position:relative;overflow:hidden;
+}
+.hero h1::after{
+  content:"";position:absolute;top:0;left:-100%;width:55%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.18),transparent);
+  transform:skewX(-20deg);
+  animation:shimmer 3.5s 1.2s infinite;
+  pointer-events:none;
 }
 .hero h1 .grad{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
 .hero p.sub{
