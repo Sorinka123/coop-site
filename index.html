@@ -631,7 +631,7 @@ section{padding:90px 0;scroll-margin-top:64px}
 .guarantee-item p{font-size:14px;color:var(--muted);line-height:1.6}
 
 /* FADE IN */
-.fade-up{opacity:0;transform:translateY(28px);transition:opacity .55s cubic-bezier(.4,0,.2,1),transform .55s cubic-bezier(.4,0,.2,1)}
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity .35s cubic-bezier(.4,0,.2,1),transform .35s cubic-bezier(.4,0,.2,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
 
 /* FLOATING WHATSAPP */
@@ -691,7 +691,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     <div class="badge"><span class="dot"></span>Автоматизация в WhatsApp, Instagram и Telegram</div>
     <h1>Боты не дают клиентам <br><span class="grad">уходить к конкурентам</span></h1>
     <p class="sub">Бот принимает заказы и записи вместо менеджера — 24/7, без пропущенных клиентов.</p>
-    <div class="price-badge">Mini-версия от 50 000 ₸</div>
+    <div class="price-badge">Под ключ от 35 000 ₸</div>
     <div class="hero-cta">
       <a class="btn btn-primary" href="#try">Попробовать бота →</a>
       <a class="btn btn-ghost" href="#demo">Смотреть демо →</a>
@@ -1204,7 +1204,7 @@ const io=new IntersectionObserver((entries)=>{
 },{threshold:0.1});
 document.querySelectorAll('.step,.benefit,.demo-card,.plan,.sec-head,.case-card,.faq-item,.roi-strip,.compare-col,.process-step,.guarantee-item').forEach((el,i)=>{
   el.classList.add('fade-up');
-  el.dataset.delay=((i%3)*70);
+  el.dataset.delay=((i%3)*40);
   io.observe(el);
 });
 
