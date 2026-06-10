@@ -638,6 +638,300 @@ section{padding:90px 0;scroll-margin-top:64px}
 .guarantee-item h3{font-size:18px;margin-bottom:8px}
 .guarantee-item p{font-size:14px;color:var(--muted);line-height:1.6}
 
+/* SITES SECTION */
+#sites{padding:120px 0;position:relative;overflow:hidden}
+/* Section background orbs */
+#sites::before{
+  content:"";position:absolute;width:700px;height:700px;border-radius:50%;
+  background:radial-gradient(circle,rgba(124,92,255,.09) 0%,transparent 70%);
+  top:-200px;left:-200px;pointer-events:none;z-index:0;
+}
+#sites::after{
+  content:"";position:absolute;width:500px;height:500px;border-radius:50%;
+  background:radial-gradient(circle,rgba(92,225,255,.07) 0%,transparent 70%);
+  bottom:-100px;right:-100px;pointer-events:none;z-index:0;
+}
+#sites .container{position:relative;z-index:1}
+/* Dot grid */
+.sites-dotgrid{
+  position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(circle,rgba(255,255,255,.04) 1px,transparent 1px);
+  background-size:36px 36px;
+  -webkit-mask-image:radial-gradient(ellipse 80% 100% at 50% 50%,#000 40%,transparent 100%);
+  mask-image:radial-gradient(ellipse 80% 100% at 50% 50%,#000 40%,transparent 100%);
+}
+/* Floating orbs */
+.sites-orb{
+  position:absolute;border-radius:50%;pointer-events:none;z-index:0;
+  filter:blur(60px);will-change:transform;
+}
+.sites-orb-1{width:320px;height:320px;background:rgba(124,92,255,.12);top:10%;left:5%}
+.sites-orb-2{width:240px;height:240px;background:rgba(92,225,255,.09);bottom:15%;right:8%}
+.sites-orb-3{width:160px;height:160px;background:rgba(255,107,107,.07);top:60%;left:40%}
+
+.sites-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);gap:32px;
+  perspective:1400px;
+}
+@media(max-width:780px){.sites-grid{grid-template-columns:1fr}}
+.site-card{
+  background:var(--card);border-radius:24px;
+  overflow:hidden;display:flex;flex-direction:column;
+  transform-style:preserve-3d;will-change:transform;
+  position:relative;
+  /* Animated neon border via gradient */
+  border:1px solid transparent;
+  background-clip:padding-box;
+}
+/* Neon gradient border layer */
+.site-card::after{
+  content:"";position:absolute;inset:-1px;border-radius:25px;z-index:-1;
+  background:linear-gradient(135deg,rgba(124,92,255,.0),rgba(92,225,255,.0),rgba(124,92,255,.0));
+  transition:background 0.4s;
+  pointer-events:none;
+}
+.site-card:hover::after{
+  background:linear-gradient(135deg,rgba(124,92,255,.7),rgba(92,225,255,.5),rgba(124,92,255,.7));
+  animation:border-rotate 3s linear infinite;
+}
+@keyframes border-rotate{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+.site-card::before{
+  content:"";position:absolute;inset:0;border-radius:24px;z-index:0;
+  opacity:0;transition:opacity .5s;
+  background:radial-gradient(ellipse 70% 60% at var(--mx,50%) var(--my,0%),rgba(124,92,255,.22),transparent 70%);
+}
+.site-card:hover::before{opacity:1}
+.site-card[data-glow="blue"]::before{
+  background:radial-gradient(ellipse 70% 60% at var(--mx,50%) var(--my,0%),rgba(92,225,255,.18),transparent 70%);
+}
+.site-card:hover{
+  box-shadow:0 0 0 1px rgba(124,92,255,.4),0 40px 100px rgba(124,92,255,.22),0 0 60px rgba(124,92,255,.08);
+}
+
+/* Browser mockup */
+.site-browser{
+  position:relative;background:#0a0b10;
+  border-bottom:1px solid rgba(255,255,255,.07);
+  flex-shrink:0;
+}
+.site-bar{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 16px;
+  background:rgba(255,255,255,.025);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.site-dots{display:flex;gap:6px;flex-shrink:0}
+.site-dot{
+  width:10px;height:10px;border-radius:50%;
+  transition:transform .15s;
+}
+.site-card:hover .site-dot:nth-child(1){background:#ff5f56;box-shadow:0 0 6px rgba(255,95,86,.6)}
+.site-card:hover .site-dot:nth-child(2){background:#febc2e;box-shadow:0 0 6px rgba(254,188,46,.6)}
+.site-card:hover .site-dot:nth-child(3){background:#28c840;box-shadow:0 0 6px rgba(40,200,64,.6)}
+.site-dot:nth-child(1){background:#ff5f56}
+.site-dot:nth-child(2){background:#febc2e}
+.site-dot:nth-child(3){background:#28c840}
+.site-url{
+  flex:1;background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.07);border-radius:7px;
+  padding:5px 12px;font-size:11px;color:rgba(255,255,255,.35);
+  font-family:'SF Mono',Menlo,monospace;letter-spacing:-.3px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.site-url-text{display:inline-block}
+/* Live badge */
+.site-live{
+  display:flex;align-items:center;gap:5px;flex-shrink:0;
+  font-size:10px;font-weight:700;color:rgba(40,200,64,.9);letter-spacing:.5px;text-transform:uppercase;
+}
+.site-live-dot{
+  width:6px;height:6px;border-radius:50%;background:#28c840;
+  box-shadow:0 0 6px rgba(40,200,64,.8);
+  animation:live-pulse 1.6s ease-in-out infinite;
+}
+@keyframes live-pulse{
+  0%,100%{transform:scale(1);opacity:1}
+  50%{transform:scale(1.5);opacity:.5}
+}
+.site-preview-clip{
+  height:300px;overflow:hidden;position:relative;cursor:pointer;
+  background:#fff;
+}
+.site-preview-clip::after{
+  content:"";position:absolute;inset:0;z-index:2;
+  background:linear-gradient(180deg,transparent 55%,rgba(10,11,16,.95) 100%);
+  pointer-events:none;
+}
+.site-preview-clip iframe{
+  width:1440px;height:900px;
+  transform:scale(0.358);transform-origin:top left;
+  border:none;pointer-events:none;
+  display:block;
+}
+/* Scan line on hover */
+.site-scan{
+  position:absolute;top:-100%;left:0;right:0;height:3px;z-index:4;
+  background:linear-gradient(90deg,transparent,rgba(124,92,255,.8),rgba(92,225,255,.9),rgba(124,92,255,.8),transparent);
+  box-shadow:0 0 12px rgba(124,92,255,.7),0 0 24px rgba(92,225,255,.4);
+  pointer-events:none;opacity:0;
+}
+.site-preview-clip:hover .site-scan{
+  animation:scan-line 1.5s ease-in-out infinite;
+  opacity:1;
+}
+@keyframes scan-line{
+  0%{top:-5px;opacity:0}
+  10%{opacity:1}
+  90%{opacity:1}
+  100%{top:calc(100% + 5px);opacity:0}
+}
+.site-preview-overlay{
+  position:absolute;inset:0;z-index:3;
+  display:flex;align-items:center;justify-content:center;
+  opacity:0;transition:opacity .3s;
+  background:rgba(8,8,16,.35);backdrop-filter:blur(3px);cursor:pointer;
+}
+.site-preview-clip:hover .site-preview-overlay{opacity:1}
+.site-open-btn-circle{
+  width:66px;height:66px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(255,255,255,.95),rgba(220,220,240,.95));
+  color:#0b0b10;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;font-weight:700;
+  box-shadow:0 8px 32px rgba(0,0,0,.5),0 0 0 2px rgba(255,255,255,.2);
+  transition:transform .25s cubic-bezier(.34,1.56,.64,1);
+}
+.site-preview-clip:hover .site-open-btn-circle{transform:scale(1.15) rotate(-8deg)}
+
+/* Card body */
+.site-body{padding:26px 28px 32px;display:flex;flex-direction:column;gap:18px;flex:1;position:relative;z-index:1}
+.site-tags{display:flex;gap:8px;flex-wrap:wrap}
+.site-tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:5px 13px;border-radius:100px;font-size:12px;font-weight:600;
+  background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.25);color:#a78bfa;
+  transition:background .2s,transform .2s;
+}
+.site-card:hover .site-tag{background:rgba(124,92,255,.18);transform:translateY(-1px)}
+.site-name{
+  font-size:22px;font-weight:800;letter-spacing:-.5px;
+  background:linear-gradient(120deg,#fff 0%,rgba(200,185,255,.9) 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.site-desc{font-size:14px;color:var(--muted);line-height:1.7;flex:1}
+.site-actions{display:flex;gap:10px;flex-wrap:wrap}
+.site-btn{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:12px 22px;border-radius:12px;font-size:14px;font-weight:600;
+  cursor:pointer;border:none;text-decoration:none;transition:.25s cubic-bezier(.34,1.56,.64,1);
+  position:relative;overflow:hidden;
+}
+.site-btn-primary{
+  background:var(--grad);color:#0b0b10;
+}
+.site-btn-primary::after{
+  content:"";position:absolute;top:0;left:-100%;width:60%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);
+  transform:skewX(-20deg);animation:shimmer 2.5s infinite;
+}
+.site-btn-primary:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 14px 30px rgba(124,92,255,.5)}
+.site-btn-ghost{
+  background:rgba(255,255,255,.05);color:var(--text);
+  border:1px solid var(--border2);
+}
+.site-btn-ghost:hover{background:rgba(255,255,255,.10);border-color:rgba(124,92,255,.5);transform:translateY(-2px);box-shadow:0 8px 20px rgba(124,92,255,.2)}
+
+/* Glow accent per card */
+.site-card[data-glow="purple"]{
+  background:linear-gradient(180deg,rgba(124,92,255,.04) 0%,var(--card) 40%);
+}
+.site-card[data-glow="blue"]{
+  background:linear-gradient(180deg,rgba(92,225,255,.04) 0%,var(--card) 40%);
+}
+.site-card[data-glow="purple"] .site-browser{box-shadow:0 1px 0 0 rgba(124,92,255,.15)}
+.site-card[data-glow="blue"] .site-browser{box-shadow:0 1px 0 0 rgba(92,225,255,.12)}
+.site-card[data-glow="blue"] .site-tag{color:#67e8f9;background:rgba(92,225,255,.1);border-color:rgba(92,225,255,.25)}
+.site-card[data-glow="blue"] .site-live-dot{background:#67e8f9;box-shadow:0 0 6px rgba(92,225,255,.8)}
+.site-card[data-glow="blue"] .site-live{color:rgba(92,225,255,.9)}
+.site-card[data-glow="blue"] .site-scan{
+  background:linear-gradient(90deg,transparent,rgba(92,225,255,.8),rgba(124,92,255,.6),rgba(92,225,255,.8),transparent);
+}
+
+/* Sites CTA */
+.sites-cta{
+  margin-top:52px;
+  display:flex;align-items:center;justify-content:center;
+  gap:16px;flex-wrap:wrap;
+}
+.sites-cta-text{
+  font-size:16px;color:var(--muted);
+}
+.sites-cta-link{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:14px 28px;border-radius:14px;
+  background:linear-gradient(135deg,rgba(124,92,255,.15),rgba(92,225,255,.1));
+  border:1px solid rgba(124,92,255,.35);
+  color:var(--text);font-size:15px;font-weight:700;
+  text-decoration:none;transition:.25s cubic-bezier(.34,1.56,.64,1);
+  position:relative;overflow:hidden;
+}
+.sites-cta-link::before{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(124,92,255,.25),rgba(92,225,255,.15));
+  opacity:0;transition:opacity .3s;
+}
+.sites-cta-link:hover{transform:translateY(-3px) scale(1.02);box-shadow:0 16px 40px rgba(124,92,255,.3),0 0 0 1px rgba(124,92,255,.5)}
+.sites-cta-link:hover::before{opacity:1}
+
+/* Sites modal */
+.sites-modal{
+  position:fixed;inset:0;z-index:200;display:none;
+  align-items:center;justify-content:center;padding:20px;
+  background:rgba(4,5,8,.92);backdrop-filter:blur(12px);
+}
+.sites-modal.open{display:flex}
+.sites-modal-inner{
+  position:relative;width:100%;max-width:1100px;
+  background:#0c0d11;border:1px solid rgba(255,255,255,.1);
+  border-radius:20px;overflow:hidden;
+  box-shadow:0 40px 120px rgba(0,0,0,.7),0 0 0 1px rgba(124,92,255,.15);
+  display:flex;flex-direction:column;
+  max-height:92vh;
+}
+.sites-modal-bar{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 20px;
+  background:rgba(255,255,255,.03);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  flex-shrink:0;
+}
+.sites-modal-dots{display:flex;gap:7px}
+.sites-modal-dot{width:12px;height:12px;border-radius:50%}
+.sites-modal-dot:nth-child(1){background:#ff5f56}
+.sites-modal-dot:nth-child(2){background:#febc2e}
+.sites-modal-dot:nth-child(3){background:#28c840}
+.sites-modal-url{
+  flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);
+  border-radius:8px;padding:7px 14px;font-size:13px;color:rgba(255,255,255,.4);
+  font-family:'SF Mono',Menlo,monospace;text-align:center;
+}
+.sites-modal-close{
+  width:36px;height:36px;border-radius:50%;
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);
+  color:var(--text);font-size:18px;cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:.2s;flex-shrink:0;
+}
+.sites-modal-close:hover{background:rgba(255,255,255,.14)}
+.sites-modal-frame{flex:1;min-height:0;position:relative}
+.sites-modal-frame iframe{
+  width:100%;height:100%;border:none;display:block;min-height:600px;
+}
+
 /* FADE IN */
 .fade-up{opacity:0;transform:translateY(28px);transition:opacity .35s cubic-bezier(.4,0,.2,1),transform .35s cubic-bezier(.4,0,.2,1)}
 .fade-up.visible{opacity:1;transform:translateY(0)}
@@ -684,6 +978,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
       <a href="#how">Как работает</a>
       <a href="#pricing">Тарифы</a>
       <a href="#guarantee">Гарантии</a>
+      <a href="#sites">Демо-сайты</a>
       <a href="#faq">FAQ</a>
       <a href="#contact">Контакты</a>
     </div>
@@ -1026,6 +1321,130 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
   </div>
 </section>
 
+<section id="sites">
+  <div class="sites-dotgrid"></div>
+  <div class="sites-orb sites-orb-1"></div>
+  <div class="sites-orb sites-orb-2"></div>
+  <div class="sites-orb sites-orb-3"></div>
+  <div class="container">
+    <div class="sec-head">
+      <div class="eyebrow">Демо-сайты</div>
+      <h2 class="sites-h2">Посмотрите,&nbsp;что получают клиенты</h2>
+      <p>Каждый бот — это ещё и готовый мини-сайт с каталогом, ценами и кнопкой заказа</p>
+    </div>
+
+    <div class="sites-grid">
+
+      <!-- Цветочный -->
+      <div class="site-card" data-glow="purple" data-url="https://coopflower.vercel.app">
+        <div class="site-browser">
+          <div class="site-bar">
+            <div class="site-dots">
+              <div class="site-dot"></div>
+              <div class="site-dot"></div>
+              <div class="site-dot"></div>
+            </div>
+            <div class="site-url"><span class="site-url-text" data-url="coopflower.vercel.app"></span></div>
+            <div class="site-live"><div class="site-live-dot"></div>Live</div>
+          </div>
+          <div class="site-preview-clip" data-src="https://coopflower.vercel.app">
+            <div class="site-scan"></div>
+            <iframe src="https://coopflower.vercel.app" loading="lazy" scrolling="no" title="Цветочный магазин — демо"></iframe>
+            <div class="site-preview-overlay">
+              <div class="site-open-btn-circle">↗</div>
+            </div>
+          </div>
+        </div>
+        <div class="site-body">
+          <div class="site-tags">
+            <span class="site-tag">💐 Цветочный магазин</span>
+            <span class="site-tag">Демо</span>
+          </div>
+          <div class="site-name">Bloom — магазин цветов</div>
+          <p class="site-desc">Каталог букетов, онлайн-заказ и запись на доставку через бота. Клиент видит цены, выбирает и оставляет заявку прямо в WhatsApp.</p>
+          <div class="site-actions">
+            <a class="site-btn site-btn-primary" href="https://coopflower.vercel.app" target="_blank" rel="noopener">
+              Открыть сайт
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <button class="site-btn site-btn-ghost" onclick="openSiteModal('https://coopflower.vercel.app','coopflower.vercel.app')">
+              Превью
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Автомойка -->
+      <div class="site-card" data-glow="blue" data-url="https://coop-autowash-demo.vercel.app">
+        <div class="site-browser">
+          <div class="site-bar">
+            <div class="site-dots">
+              <div class="site-dot"></div>
+              <div class="site-dot"></div>
+              <div class="site-dot"></div>
+            </div>
+            <div class="site-url"><span class="site-url-text" data-url="coop-autowash-demo.vercel.app"></span></div>
+            <div class="site-live"><div class="site-live-dot"></div>Live</div>
+          </div>
+          <div class="site-preview-clip" data-src="https://coop-autowash-demo.vercel.app">
+            <div class="site-scan"></div>
+            <iframe src="https://coop-autowash-demo.vercel.app" loading="lazy" scrolling="no" title="Автомойка — демо"></iframe>
+            <div class="site-preview-overlay">
+              <div class="site-open-btn-circle">↗</div>
+            </div>
+          </div>
+        </div>
+        <div class="site-body">
+          <div class="site-tags">
+            <span class="site-tag">🚗 Автомойка</span>
+            <span class="site-tag">Демо</span>
+          </div>
+          <div class="site-name">AutoWash — запись на мойку</div>
+          <p class="site-desc">Страница услуг с ценами и онлайн-записью. Клиент выбирает время, тип мойки — и заявка приходит владельцу в Telegram.</p>
+          <div class="site-actions">
+            <a class="site-btn site-btn-primary" href="https://coop-autowash-demo.vercel.app" target="_blank" rel="noopener">
+              Открыть сайт
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            </a>
+            <button class="site-btn site-btn-ghost" onclick="openSiteModal('https://coop-autowash-demo.vercel.app','coop-autowash-demo.vercel.app')">
+              Превью
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="sites-cta">
+      <span class="sites-cta-text">Хотите такой же сайт для своего бизнеса?</span>
+      <a class="sites-cta-link" href="https://wa.me/77082468053" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style="opacity:.8"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.196.591 4.25 1.621 6.014L0 24l6.182-1.574A11.944 11.944 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.795 9.795 0 01-5.003-1.368l-.36-.214-3.67.934.984-3.543-.235-.374A9.77 9.77 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/></svg>
+        Обсудим проект →
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- Sites modal -->
+<div class="sites-modal" id="sitesModal" onclick="closeSiteModal(event)">
+  <div class="sites-modal-inner" onclick="event.stopPropagation()">
+    <div class="sites-modal-bar">
+      <div class="sites-modal-dots">
+        <div class="sites-modal-dot"></div>
+        <div class="sites-modal-dot"></div>
+        <div class="sites-modal-dot"></div>
+      </div>
+      <div class="sites-modal-url" id="sitesModalUrl"></div>
+      <button class="sites-modal-close" onclick="closeSiteModalBtn()" aria-label="Закрыть">&times;</button>
+    </div>
+    <div class="sites-modal-frame">
+      <iframe id="sitesModalIframe" src="" title="Демо-сайт"></iframe>
+    </div>
+  </div>
+</div>
+
 <section id="faq">
   <div class="container">
     <div class="sec-head">
@@ -1348,6 +1767,210 @@ soonBtn.addEventListener('click',e=>{
   soonTimer=setTimeout(()=>soonPopup.classList.remove('show'),2000);
 });
 </script>
+
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+gsap.registerPlugin(ScrollTrigger);
+
+/* ══════════════════════════════════════════
+   SITES SECTION — full GSAP upgrade
+   ══════════════════════════════════════════ */
+(function(){
+  const section = document.getElementById('sites');
+  if(!section) return;
+  const cards = section.querySelectorAll('.site-card');
+  const reduced = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* ── 1. Floating orbs parallax on scroll ── */
+  if(!reduced){
+    const orb1=section.querySelector('.sites-orb-1');
+    const orb2=section.querySelector('.sites-orb-2');
+    const orb3=section.querySelector('.sites-orb-3');
+    if(orb1) gsap.to(orb1,{y:-80,ease:'none',scrollTrigger:{trigger:section,start:'top bottom',end:'bottom top',scrub:1.5}});
+    if(orb2) gsap.to(orb2,{y:-50,ease:'none',scrollTrigger:{trigger:section,start:'top bottom',end:'bottom top',scrub:2}});
+    if(orb3) gsap.to(orb3,{y:-35,x:20,ease:'none',scrollTrigger:{trigger:section,start:'top bottom',end:'bottom top',scrub:2.5}});
+  }
+
+  /* ── 2. Eyebrow: slide in from left ── */
+  const eyebrow=section.querySelector('.eyebrow');
+  if(eyebrow){
+    gsap.set(eyebrow,{opacity:0,x:-30});
+    ScrollTrigger.create({
+      trigger:eyebrow,start:'top 88%',once:true,
+      onEnter:()=>gsap.to(eyebrow,{opacity:1,x:0,duration:.6,ease:'power3.out'})
+    });
+  }
+
+  /* ── 3. h2: words stagger in ── */
+  const h2=section.querySelector('.sites-h2');
+  if(h2){
+    const words=h2.textContent.split(/\s+/).filter(Boolean);
+    h2.innerHTML=words.map(w=>`<span class="sw" style="display:inline-block;overflow:hidden"><span class="swi" style="display:inline-block">${w}</span></span>`).join(' ');
+    gsap.set(h2.querySelectorAll('.swi'),{y:'110%',opacity:0});
+    ScrollTrigger.create({
+      trigger:h2,start:'top 85%',once:true,
+      onEnter:()=>gsap.to(h2.querySelectorAll('.swi'),{
+        y:'0%',opacity:1,duration:.75,stagger:.08,ease:'power4.out'
+      })
+    });
+  }
+
+  /* ── 4. Subtext fade ── */
+  const sub=section.querySelector('.sec-head p');
+  if(sub){
+    gsap.set(sub,{opacity:0,y:20});
+    ScrollTrigger.create({
+      trigger:sub,start:'top 88%',once:true,
+      onEnter:()=>gsap.to(sub,{opacity:1,y:0,duration:.7,delay:.25,ease:'power2.out'})
+    });
+  }
+
+  /* ── 5. Card dramatic entrance: clip-path + rotateX + stagger ── */
+  if(!reduced){
+    gsap.set(cards,{
+      opacity:0,y:90,rotateX:18,scale:.94,
+      transformPerspective:1200,
+      clipPath:'inset(0 0 30% 0 round 24px)'
+    });
+    ScrollTrigger.create({
+      trigger:'#sites',start:'top 75%',once:true,
+      onEnter:()=>{
+        gsap.to(cards,{
+          opacity:1,y:0,rotateX:0,scale:1,
+          clipPath:'inset(0 0 0% 0 round 24px)',
+          duration:.9,stagger:.2,ease:'power3.out'
+        });
+      }
+    });
+  }
+
+  /* ── 6. URL typing animation per card ── */
+  const typeUrl=(el)=>{
+    const txt=el.dataset.url||'';
+    el.textContent='';
+    let i=0;
+    const cursor='|';
+    el.textContent=cursor;
+    const iv=setInterval(()=>{
+      if(i<txt.length){
+        el.textContent=txt.slice(0,++i)+cursor;
+      } else {
+        el.textContent=txt;
+        clearInterval(iv);
+      }
+    },38);
+  };
+  section.querySelectorAll('.site-url-text').forEach(el=>{
+    ScrollTrigger.create({
+      trigger:el.closest('.site-card'),start:'top 80%',once:true,
+      onEnter:()=>{setTimeout(()=>typeUrl(el),400);}
+    });
+  });
+
+  /* ── 7. 3D magnetic tilt ── */
+  const MAX_TILT=12;
+  cards.forEach(card=>{
+    card.addEventListener('mousemove',e=>{
+      const r=card.getBoundingClientRect();
+      const cx=r.left+r.width/2, cy=r.top+r.height/2;
+      const dx=(e.clientX-cx)/r.width, dy=(e.clientY-cy)/r.height;
+      gsap.to(card,{
+        rotateY:dx*MAX_TILT, rotateX:-dy*MAX_TILT,
+        transformPerspective:1000,
+        duration:.4, ease:'power2.out', overwrite:'auto'
+      });
+      /* glow follows cursor */
+      const xPct=((e.clientX-r.left)/r.width*100).toFixed(1);
+      const yPct=((e.clientY-r.top)/r.height*100).toFixed(1);
+      card.style.setProperty('--mx',xPct+'%');
+      card.style.setProperty('--my',yPct+'%');
+    });
+    card.addEventListener('mouseleave',()=>{
+      gsap.to(card,{rotateY:0,rotateX:0,duration:.7,ease:'elastic.out(1,.5)',overwrite:'auto'});
+    });
+  });
+
+  /* ── 8. Magnetic buttons ── */
+  section.querySelectorAll('.site-btn').forEach(btn=>{
+    btn.addEventListener('mousemove',e=>{
+      const r=btn.getBoundingClientRect();
+      const dx=e.clientX-r.left-r.width/2;
+      const dy=e.clientY-r.top-r.height/2;
+      gsap.to(btn,{x:dx*.25,y:dy*.25,duration:.3,ease:'power2.out',overwrite:'auto'});
+    });
+    btn.addEventListener('mouseleave',()=>{
+      gsap.to(btn,{x:0,y:0,duration:.5,ease:'elastic.out(1,.6)',overwrite:'auto'});
+    });
+  });
+
+  /* ── 9. Preview iframe parallax on scroll ── */
+  if(!reduced){
+    section.querySelectorAll('.site-preview-clip').forEach(clip=>{
+      gsap.to(clip.querySelector('iframe'),{
+        y:-50, ease:'none',
+        scrollTrigger:{trigger:clip,start:'top bottom',end:'bottom top',scrub:true}
+      });
+    });
+  }
+
+  /* ── 10. Preview click → modal ── */
+  section.querySelectorAll('.site-preview-clip').forEach(clip=>{
+    clip.addEventListener('click',()=>{
+      const src=clip.dataset.src;
+      const url=new URL(src).hostname;
+      openSiteModal(src,url);
+    });
+  });
+
+  /* ── 11. CTA entrance ── */
+  const cta=section.querySelector('.sites-cta');
+  if(cta){
+    gsap.set(cta,{opacity:0,y:30,scale:.97});
+    ScrollTrigger.create({
+      trigger:cta,start:'top 90%',once:true,
+      onEnter:()=>gsap.to(cta,{opacity:1,y:0,scale:1,duration:.7,delay:.1,ease:'power3.out'})
+    });
+  }
+
+})();
+
+/* ── Sites modal ── */
+function openSiteModal(src,urlLabel){
+  const modal=document.getElementById('sitesModal');
+  document.getElementById('sitesModalUrl').textContent=urlLabel;
+  document.getElementById('sitesModalIframe').src=src;
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+  /* Backdrop: fade in separately */
+  gsap.fromTo(modal,{backdropFilter:'blur(0px)'},{backdropFilter:'blur(16px)',duration:.5,ease:'power2.out'});
+  gsap.fromTo(modal.querySelector('.sites-modal-inner'),
+    {opacity:0, scale:.88, y:50, rotateX:8},
+    {opacity:1, scale:1, y:0, rotateX:0, duration:.5, ease:'back.out(1.4)'}
+  );
+}
+function closeSiteModal(e){
+  if(e && e.target!==document.getElementById('sitesModal')) return;
+  _closeSiteModal();
+}
+function closeSiteModalBtn(){_closeSiteModal();}
+function _closeSiteModal(){
+  const modal=document.getElementById('sitesModal');
+  gsap.to(modal.querySelector('.sites-modal-inner'),{
+    opacity:0, scale:.9, y:30, rotateX:6, duration:.28, ease:'power2.in',
+    onComplete:()=>{
+      modal.classList.remove('open');
+      document.getElementById('sitesModalIframe').src='';
+      document.body.style.overflow='';
+    }
+  });
+}
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape'&&document.getElementById('sitesModal').classList.contains('open'))_closeSiteModal();
+});
+</script>
+
 <div class="soon-popup" id="soonPopup">Скоро будет доступно 🔜</div>
 </body>
 </html>
