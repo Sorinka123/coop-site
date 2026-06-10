@@ -2103,6 +2103,260 @@ function _closeSiteModal(){
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'&&document.getElementById('sitesModal').classList.contains('open'))_closeSiteModal();
 });
+
+/* ══════════════════════════════════════════
+   GLOBAL ANIMATION UPGRADE
+   ══════════════════════════════════════════ */
+(function(){
+  const R = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+  /* helper: universal section head stagger */
+  function animHead(section){
+    const el = typeof section==='string' ? document.querySelector(section) : section;
+    if(!el) return;
+    const ew = el.querySelector('.eyebrow');
+    const h2 = el.querySelector('h2');
+    const p  = el.querySelector('p');
+    if(ew){ gsap.set(ew,{opacity:0,x:-24}); ScrollTrigger.create({trigger:ew,start:'top 88%',once:true,onEnter:()=>gsap.to(ew,{opacity:1,x:0,duration:.55,ease:'power3.out'})}); }
+    if(h2){ gsap.set(h2,{opacity:0,y:22}); ScrollTrigger.create({trigger:h2,start:'top 88%',once:true,onEnter:()=>gsap.to(h2,{opacity:1,y:0,duration:.65,delay:.08,ease:'power3.out'})}); }
+    if(p){  gsap.set(p, {opacity:0,y:16}); ScrollTrigger.create({trigger:p, start:'top 90%',once:true,onEnter:()=>gsap.to(p, {opacity:1,y:0,duration:.55,delay:.18,ease:'power2.out'})}); }
+  }
+
+  /* ══ 1. HERO entrance sequence ══ */
+  (function(){
+    const badge   = document.querySelector('.hero .badge');
+    const h1      = document.querySelector('.hero h1');
+    const sub     = document.querySelector('.hero .sub');
+    const priceBg = document.querySelector('.hero .price-badge');
+    const ctaBtns = document.querySelectorAll('.hero-cta .btn');
+    const proof   = document.querySelector('.hero-proof');
+
+    const tl = gsap.timeline({defaults:{ease:'power3.out'}});
+    if(badge)   tl.from(badge,  {opacity:0,y:-16,duration:.5},        0.1);
+    if(h1){
+      const words = h1.querySelectorAll('span, br') ; // animate whole h1
+      tl.from(h1, {opacity:0,y:40,duration:.7},                       0.25);
+    }
+    if(sub)     tl.from(sub,    {opacity:0,y:24,duration:.6},          0.5);
+    if(priceBg) tl.from(priceBg,{opacity:0,scale:.85,duration:.45},   0.65);
+    ctaBtns.forEach((btn,i)=>tl.from(btn,{opacity:0,y:18,duration:.45},0.75+i*.12));
+    if(proof)   tl.from(proof,  {opacity:0,y:20,duration:.5},          1.05);
+  })();
+
+  /* ══ 2. PHONE: floating idle + entrance ══ */
+  (function(){
+    const phone = document.querySelector('.phone-frame');
+    if(!phone) return;
+    gsap.from(phone,{opacity:0,y:60,rotateY:-8,scale:.94,duration:.9,delay:.6,ease:'back.out(1.3)',transformPerspective:1200});
+    if(R) return;
+    gsap.to(phone,{y:-12,duration:2.8,ease:'sine.inOut',repeat:-1,yoyo:true});
+  })();
+
+  /* ══ 3. HOW section: steps with connector line ══ */
+  (function(){
+    const section = document.getElementById('how');
+    if(!section) return;
+    animHead('#how .sec-head');
+    const steps = section.querySelectorAll('.step');
+
+    /* Add connector SVG between steps */
+    const stepsWrap = section.querySelector('.steps');
+    if(stepsWrap && steps.length > 1 && !stepsWrap.querySelector('.step-connector')){
+      stepsWrap.style.position = 'relative';
+      const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+      svg.setAttribute('class','step-connector');
+      svg.style.cssText='position:absolute;top:28px;left:0;width:100%;height:4px;pointer-events:none;overflow:visible;';
+      const line = document.createElementNS('http://www.w3.org/2000/svg','line');
+      line.setAttribute('x1','16.7%'); line.setAttribute('x2','83.3%');
+      line.setAttribute('y1','2');     line.setAttribute('y2','2');
+      line.setAttribute('stroke','rgba(124,92,255,.25)'); line.setAttribute('stroke-width','2'); line.setAttribute('stroke-dasharray','6 4');
+      const lineFill = document.createElementNS('http://www.w3.org/2000/svg','line');
+      lineFill.setAttribute('class','step-line-fill');
+      lineFill.setAttribute('x1','16.7%'); lineFill.setAttribute('x2','16.7%');
+      lineFill.setAttribute('y1','2');     lineFill.setAttribute('y2','2');
+      lineFill.setAttribute('stroke','url(#stepGrad)'); lineFill.setAttribute('stroke-width','2');
+      const defs = document.createElementNS('http://www.w3.org/2000/svg','defs');
+      const grad = document.createElementNS('http://www.w3.org/2000/svg','linearGradient');
+      grad.setAttribute('id','stepGrad');
+      ['0','100'].forEach((o,i)=>{const s=document.createElementNS('http://www.w3.org/2000/svg','stop');s.setAttribute('offset',o+'%');s.setAttribute('stop-color',i===0?'#7c5cff':'#5ce1ff');grad.appendChild(s);});
+      defs.appendChild(grad); svg.appendChild(defs); svg.appendChild(line); svg.appendChild(lineFill);
+      stepsWrap.insertBefore(svg,stepsWrap.firstChild);
+    }
+
+    gsap.set(steps,{opacity:0,y:40,scale:.96});
+    ScrollTrigger.create({
+      trigger:stepsWrap,start:'top 78%',once:true,
+      onEnter:()=>{
+        gsap.to(steps,{opacity:1,y:0,scale:1,duration:.65,stagger:.18,ease:'back.out(1.4)'});
+        const fill = section.querySelector('.step-line-fill');
+        if(fill) gsap.fromTo(fill,{attr:{x2:'16.7%'}},{attr:{x2:'83.3%'},duration:1,delay:.3,ease:'power2.inOut'});
+      }
+    });
+  })();
+
+  /* ══ 4. DEMO cards ══ */
+  (function(){
+    const cards = document.querySelectorAll('#demo .demo-card');
+    if(!cards.length) return;
+    animHead('#demo .sec-head');
+    gsap.set(cards,{opacity:0,y:50,scale:.95});
+    ScrollTrigger.create({
+      trigger:'#demo .demo-grid',start:'top 80%',once:true,
+      onEnter:()=>gsap.to(cards,{opacity:1,y:0,scale:1,duration:.65,stagger:.15,ease:'back.out(1.3)'})
+    });
+  })();
+
+  /* ══ 5. TRY section ══ */
+  (function(){
+    const box = document.querySelector('.try-box');
+    if(!box) return;
+    const h2  = box.querySelector('h2');
+    const p   = box.querySelector('p');
+    const btns= box.querySelectorAll('.try-btn');
+    gsap.set([h2,p],{opacity:0,y:20});
+    gsap.set(btns,{opacity:0,y:18,scale:.95});
+    ScrollTrigger.create({
+      trigger:box,start:'top 82%',once:true,
+      onEnter:()=>{
+        gsap.to(h2,{opacity:1,y:0,duration:.6,ease:'power3.out'});
+        gsap.to(p, {opacity:1,y:0,duration:.55,delay:.1,ease:'power2.out'});
+        gsap.to(btns,{opacity:1,y:0,scale:1,duration:.5,stagger:.1,delay:.2,ease:'back.out(1.4)'});
+      }
+    });
+  })();
+
+  /* ══ 6. BENEFITS grid: stagger ══ */
+  (function(){
+    const items = document.querySelectorAll('#benefits .benefit');
+    if(!items.length) return;
+    animHead('#benefits .sec-head');
+    gsap.set(items,{opacity:0,y:36,scale:.97});
+    ScrollTrigger.create({
+      trigger:'#benefits .benefits',start:'top 80%',once:true,
+      onEnter:()=>gsap.to(items,{opacity:1,y:0,scale:1,duration:.6,stagger:.1,ease:'back.out(1.3)'})
+    });
+  })();
+
+  /* ══ 7. COMPARE: left slides from left, right from right, li stagger ══ */
+  (function(){
+    const bad  = document.querySelector('.compare-bad');
+    const good = document.querySelector('.compare-good');
+    if(!bad||!good) return;
+    animHead('#compare .sec-head');
+    gsap.set(bad, {opacity:0,x:-50});
+    gsap.set(good,{opacity:0,x:50});
+    ScrollTrigger.create({
+      trigger:'.compare-grid',start:'top 80%',once:true,
+      onEnter:()=>{
+        gsap.to(bad, {opacity:1,x:0,duration:.7,ease:'power3.out'});
+        gsap.to(good,{opacity:1,x:0,duration:.7,ease:'power3.out'});
+        const badLi  = bad.querySelectorAll('li');
+        const goodLi = good.querySelectorAll('li');
+        gsap.set([...badLi,...goodLi],{opacity:0,x:0,y:10});
+        gsap.to(badLi, {opacity:1,y:0,duration:.4,stagger:.09,delay:.35,ease:'power2.out'});
+        gsap.to(goodLi,{opacity:1,y:0,duration:.4,stagger:.09,delay:.45,ease:'power2.out'});
+      }
+    });
+  })();
+
+  /* ══ 8. PRICING plans stagger ══ */
+  (function(){
+    animHead('#pricing .sec-head');
+    const observer = new MutationObserver(()=>{
+      const plans = document.querySelectorAll('#plans .plan');
+      if(!plans.length) return;
+      gsap.from(plans,{opacity:0,y:30,scale:.96,duration:.55,stagger:.12,ease:'back.out(1.3)'});
+    });
+    const plansEl = document.getElementById('plans');
+    if(plansEl) observer.observe(plansEl,{childList:true});
+  })();
+
+  /* ══ 9. STATS counters (roi-strip) ══ */
+  (function(){
+    const strip = document.querySelector('.roi-strip');
+    if(!strip) return;
+    gsap.set(strip,{opacity:0,y:24,scale:.97});
+    ScrollTrigger.create({
+      trigger:strip,start:'top 88%',once:true,
+      onEnter:()=>{
+        gsap.to(strip,{opacity:1,y:0,scale:1,duration:.6,ease:'back.out(1.4)'});
+        strip.querySelectorAll('.roi-num').forEach(el=>{
+          const txt = el.textContent.trim();
+          const num = parseFloat(txt.replace(/[^\d.]/g,''));
+          if(!isNaN(num) && num > 0){
+            const suffix = txt.replace(/[\d.]/g,'');
+            gsap.from({v:0},{v:num,duration:1.4,delay:.2,ease:'power2.out',
+              onUpdate:function(){ el.textContent = Math.round(this.targets()[0].v) + suffix; }
+            });
+          }
+        });
+      }
+    });
+  })();
+
+  /* ══ 10. PROCESS steps: line draws + steps fade ══ */
+  (function(){
+    const section = document.getElementById('process');
+    if(!section) return;
+    animHead('#process .sec-head');
+    const steps = section.querySelectorAll('.process-step');
+    gsap.set(steps,{opacity:0,y:30});
+    ScrollTrigger.create({
+      trigger:'.process-line',start:'top 80%',once:true,
+      onEnter:()=>gsap.to(steps,{opacity:1,y:0,duration:.6,stagger:.15,ease:'power3.out'})
+    });
+  })();
+
+  /* ══ 11. GUARANTEE items ══ */
+  (function(){
+    const items = document.querySelectorAll('.guarantee-item');
+    if(!items.length) return;
+    const box = document.querySelector('.guarantee-box');
+    if(box){
+      const h2 = box.querySelector('h2');
+      const p  = box.querySelector('p');
+      const ew = box.querySelector('.eyebrow');
+      if(ew){ gsap.set(ew,{opacity:0,x:-20}); ScrollTrigger.create({trigger:ew,start:'top 88%',once:true,onEnter:()=>gsap.to(ew,{opacity:1,x:0,duration:.5,ease:'power3.out'})}); }
+      if(h2){ gsap.set(h2,{opacity:0,y:18}); ScrollTrigger.create({trigger:h2,start:'top 88%',once:true,onEnter:()=>gsap.to(h2,{opacity:1,y:0,duration:.6,delay:.08,ease:'power3.out'})}); }
+      if(p) { gsap.set(p, {opacity:0,y:14}); ScrollTrigger.create({trigger:p, start:'top 90%',once:true,onEnter:()=>gsap.to(p, {opacity:1,y:0,duration:.5,delay:.15,ease:'power2.out'})}); }
+    }
+    gsap.set(items,{opacity:0,y:30,scale:.97});
+    ScrollTrigger.create({
+      trigger:'.guarantee-grid',start:'top 82%',once:true,
+      onEnter:()=>gsap.to(items,{opacity:1,y:0,scale:1,duration:.6,stagger:.15,ease:'back.out(1.3)'})
+    });
+  })();
+
+  /* ══ 12. FAQ items stagger ══ */
+  (function(){
+    const items = document.querySelectorAll('.faq-item');
+    if(!items.length) return;
+    animHead('#faq .sec-head');
+    gsap.set(items,{opacity:0,y:20});
+    ScrollTrigger.create({
+      trigger:'.faq-list',start:'top 82%',once:true,
+      onEnter:()=>gsap.to(items,{opacity:1,y:0,duration:.5,stagger:.09,ease:'power2.out'})
+    });
+  })();
+
+  /* ══ 13. CONTACT section ══ */
+  (function(){
+    const box = document.querySelector('#contact .contact-box, #contact .container > *');
+    if(!box) return;
+    gsap.set(box,{opacity:0,y:30,scale:.98});
+    ScrollTrigger.create({
+      trigger:box,start:'top 84%',once:true,
+      onEnter:()=>gsap.to(box,{opacity:1,y:0,scale:1,duration:.65,ease:'back.out(1.3)'})
+    });
+  })();
+
+  /* ══ 14. Generic sec-head for remaining sections ══ */
+  ['#guarantee','#cases','#contact'].forEach(id=>{
+    const el = document.querySelector(id+' .sec-head');
+    if(el) animHead(el);
+  });
+
+})();
 </script>
 
 <div class="soon-popup" id="soonPopup">Скоро будет доступно 🔜</div>
