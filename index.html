@@ -396,15 +396,21 @@ section{padding:90px 0;scroll-margin-top:64px}
 }
 .plan:hover{transform:translateY(-6px);border-color:transparent;box-shadow:0 0 0 1px rgba(124,92,255,.4),0 20px 50px rgba(124,92,255,.12)}
 .plan.featured{
-  border-color:rgba(124,92,255,.5);
-  background:linear-gradient(180deg,rgba(124,92,255,.1),var(--card));
-  box-shadow:0 0 0 1px rgba(124,92,255,.3),0 24px 60px rgba(124,92,255,.2);
+  border-color:transparent;
+  background:linear-gradient(160deg,rgba(124,92,255,.18) 0%,rgba(92,225,255,.08) 60%,var(--card) 100%);
+  box-shadow:0 0 0 1px rgba(124,92,255,.5),0 32px 80px rgba(124,92,255,.28);
+  transform:translateY(-8px) scale(1.02);
+  z-index:2;
 }
+.plan.featured:hover{transform:translateY(-14px) scale(1.02);box-shadow:0 0 0 1px rgba(124,92,255,.7),0 40px 100px rgba(124,92,255,.35)}
 .plan.featured::before{
-  content:"Популярный";position:absolute;top:-12px;left:50%;transform:translateX(-50%);
-  background:var(--grad);color:#0b0b10;font-size:12px;font-weight:700;
-  padding:5px 14px;border-radius:100px;
+  content:"⭐ Популярный";position:absolute;top:-14px;left:50%;transform:translateX(-50%);
+  background:var(--grad);color:#0b0b10;font-size:12px;font-weight:800;
+  padding:5px 16px;border-radius:100px;
+  box-shadow:0 4px 16px rgba(124,92,255,.4);
+  white-space:nowrap;
 }
+.plan.featured .price{font-size:44px;}
 .plan .tier{font-size:14px;color:var(--muted);font-weight:600;text-transform:uppercase;letter-spacing:.5px}
 .plan .price{font-size:40px;font-weight:800;margin:14px 0 4px;letter-spacing:-1.5px;font-variant-numeric:tabular-nums;background:var(--grad);background-size:200% auto;-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(124,92,255,.35));transition:background-position .5s ease}
 .plan:hover .price{background-position:right center}
@@ -619,6 +625,40 @@ section{padding:90px 0;scroll-margin-top:64px}
 @media(max-width:560px){.roi-div{display:none}.roi-strip{gap:20px}}
 
 /* CASES */
+/* TRUST BAR (replaces empty cases) */
+.trust-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+  background:rgba(255,255,255,.06);border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+}
+@media(max-width:780px){.trust-bar{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:440px){.trust-bar{grid-template-columns:1fr}}
+.trust-item{
+  padding:32px 24px;background:var(--card);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;gap:8px;
+  transition:background .25s;
+}
+.trust-item:hover{background:rgba(124,92,255,.07)}
+.trust-num{
+  font-size:clamp(30px,4vw,44px);font-weight:800;letter-spacing:-1.5px;
+  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
+  line-height:1;
+}
+.trust-label{font-size:13px;color:var(--muted);line-height:1.4;max-width:130px}
+
+/* Section ambient dividers */
+.sec-divider{
+  height:1px;background:linear-gradient(90deg,transparent,rgba(124,92,255,.2),rgba(92,225,255,.15),rgba(124,92,255,.2),transparent);
+  margin:0;border:none;
+}
+
+/* Mobile proof strip */
+@media(max-width:600px){
+  .hero-proof-cards{flex-direction:column;align-items:center}
+  .hpc{width:min(200px,80vw)}
+}
+
 .cases-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
 @media(max-width:880px){.cases-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
 .case-card{
@@ -1174,7 +1214,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
   </div>
 </section>
-
+<hr class="sec-divider">
 <section id="demo">
   <div class="container">
     <div class="sec-head">
@@ -1237,7 +1277,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
   </div>
 </section>
-
+<hr class="sec-divider">
 <section id="benefits">
   <div class="container">
     <div class="sec-head">
@@ -1279,7 +1319,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
   </div>
 </section>
-
+<hr class="sec-divider">
 <section id="compare">
   <div class="container">
     <div class="sec-head">
@@ -1311,7 +1351,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
   </div>
 </section>
-
+<hr class="sec-divider">
 <section id="pricing">
   <div class="container">
     <div class="sec-head">
@@ -1369,7 +1409,7 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
   </div>
 </section>
-
+<hr class="sec-divider">
 <section id="guarantee">
   <div class="container">
     <div class="guarantee-box">
@@ -1396,50 +1436,32 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
     </div>
   </div>
 </section>
-
+<hr class="sec-divider">
 <section id="cases">
   <div class="container">
     <div class="sec-head">
-      <div class="eyebrow">Кейсы</div>
-      <h2>Реальные результаты</h2>
-      <p>Скоро здесь появятся истории бизнесов, которые уже работают с ботами</p>
+      <div class="eyebrow">В цифрах</div>
+      <h2>Почему выбирают COOP</h2>
+      <p>Результаты, которые получают бизнесы после запуска бота</p>
     </div>
-    <div class="cases-grid">
-      <div class="case-card case-soon">
-        <div class="case-soon-badge">Скоро</div>
-        <div class="case-niche">🚚 Доставка еды</div>
-        <div class="case-placeholder-title">Кейс: служба доставки</div>
-        <p class="case-placeholder-desc">Как бот принял первые заказы без единого звонка менеджеру</p>
-        <div class="case-metrics">
-          <div class="case-metric"><span>—</span><small>заявок в день</small></div>
-          <div class="case-metric"><span>—</span><small>ответ за</small></div>
-          <div class="case-metric"><span>—</span><small>окупаемость</small></div>
-        </div>
+    <div class="trust-bar">
+      <div class="trust-item">
+        <div class="trust-num" data-count="24" data-suffix="/7">24/7</div>
+        <div class="trust-label">бот отвечает без выходных и праздников</div>
       </div>
-      <div class="case-card case-soon">
-        <div class="case-soon-badge">Скоро</div>
-        <div class="case-niche">💅 Салон красоты</div>
-        <div class="case-placeholder-title">Кейс: салон красоты</div>
-        <p class="case-placeholder-desc">Онлайн-запись без администратора и без пропущенных клиентов</p>
-        <div class="case-metrics">
-          <div class="case-metric"><span>—</span><small>записей в день</small></div>
-          <div class="case-metric"><span>—</span><small>экономия времени</small></div>
-          <div class="case-metric"><span>—</span><small>окупаемость</small></div>
-        </div>
+      <div class="trust-item">
+        <div class="trust-num" data-count="3" data-suffix=" сек">3 сек</div>
+        <div class="trust-label">среднее время первого ответа клиенту</div>
       </div>
-      <div class="case-card case-soon">
-        <div class="case-soon-badge">Скоро</div>
-        <div class="case-niche">💐 Цветочный магазин</div>
-        <div class="case-placeholder-title">Кейс: магазин цветов</div>
-        <p class="case-placeholder-desc">Бот принимает заказы на доставку и подбирает букеты по поводу</p>
-        <div class="case-metrics">
-          <div class="case-metric"><span>—</span><small>заказов в день</small></div>
-          <div class="case-metric"><span>—</span><small>средний чек</small></div>
-          <div class="case-metric"><span>—</span><small>окупаемость</small></div>
-        </div>
+      <div class="trust-item">
+        <div class="trust-num" data-count="0" data-suffix=" ₸">0 ₸</div>
+        <div class="trust-label">риск — платите только если нравится демо</div>
+      </div>
+      <div class="trust-item">
+        <div class="trust-num" data-count="7" data-suffix=" дней">7 дней</div>
+        <div class="trust-label">от заявки до запуска готового бота</div>
       </div>
     </div>
-    <p class="cases-cta-hint">Хотите стать первым кейсом? <a href="https://wa.me/77082468053" target="_blank" style="color:var(--accent2);font-weight:600">Напишите нам →</a></p>
   </div>
 </section>
 
@@ -2134,8 +2156,32 @@ document.addEventListener('keydown',e=>{
     const tl = gsap.timeline({defaults:{ease:'power3.out'}});
     if(badge)   tl.from(badge,  {opacity:0,y:-16,duration:.5},        0.1);
     if(h1){
-      const words = h1.querySelectorAll('span, br') ; // animate whole h1
-      tl.from(h1, {opacity:0,y:40,duration:.7},                       0.25);
+      /* split words into clip-masked spans preserving .grad */
+      function splitNodeWords(node){
+        if(node.nodeType===3){
+          const words=node.textContent.split(/(\s+)/);
+          const frag=document.createDocumentFragment();
+          words.forEach(w=>{
+            if(!w) return;
+            if(/^\s+$/.test(w)){frag.appendChild(document.createTextNode(w));return;}
+            const s=document.createElement('span');
+            s.style.cssText='display:inline-block;overflow:hidden;vertical-align:bottom;line-height:1.1';
+            const i=document.createElement('span');i.style.display='inline-block';i.textContent=w;
+            s.appendChild(i);frag.appendChild(s);
+          });
+          node.parentNode.replaceChild(frag,node);
+        }
+      }
+      Array.from(h1.childNodes).forEach(n=>{
+        if(n.nodeType===3) splitNodeWords(n);
+        else if(n.nodeType===1 && n.tagName!=='BR'){
+          const saved=n.innerHTML;
+          Array.from(n.childNodes).forEach(splitNodeWords);
+        }
+      });
+      const inners=h1.querySelectorAll('span > span');
+      gsap.set(inners,{y:'110%'});
+      tl.to(inners,{y:'0%',duration:.75,stagger:.065,ease:'power4.out'},0.2);
     }
     if(sub)     tl.from(sub,    {opacity:0,y:24,duration:.6},          0.5);
     if(priceBg) tl.from(priceBg,{opacity:0,scale:.85,duration:.45},   0.65);
@@ -2351,8 +2397,32 @@ document.addEventListener('keydown',e=>{
     });
   })();
 
-  /* ══ 14. Generic sec-head for remaining sections ══ */
-  ['#guarantee','#cases','#contact'].forEach(id=>{
+  /* ══ 14. TRUST BAR: stagger + counter ══ */
+  (function(){
+    const bar = document.querySelector('.trust-bar');
+    if(!bar) return;
+    animHead('#cases .sec-head');
+    const items = bar.querySelectorAll('.trust-item');
+    gsap.set(items,{opacity:0,y:30,scale:.95});
+    ScrollTrigger.create({
+      trigger:bar,start:'top 82%',once:true,
+      onEnter:()=>{
+        gsap.to(items,{opacity:1,y:0,scale:1,duration:.6,stagger:.12,ease:'back.out(1.4)'});
+        bar.querySelectorAll('.trust-num').forEach((el,i)=>{
+          const count = parseInt(el.dataset.count)||0;
+          const suffix = el.dataset.suffix||'';
+          if(count===0){ gsap.from(el,{scale:.5,opacity:0,duration:.5,delay:.15+i*.12,ease:'back.out(2)'}); return; }
+          const obj={v:0};
+          gsap.to(obj,{v:count,duration:1.2,delay:.2+i*.1,ease:'power2.out',
+            onUpdate(){ el.textContent = Math.round(obj.v) + suffix; }
+          });
+        });
+      }
+    });
+  })();
+
+  /* ══ 15. Generic sec-head for remaining sections ══ */
+  ['#guarantee','#contact'].forEach(id=>{
     const el = document.querySelector(id+' .sec-head');
     if(el) animHead(el);
   });
