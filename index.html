@@ -181,6 +181,88 @@ nav .container{display:flex;align-items:center;justify-content:space-between;hei
 .hero-socials svg{width:22px;height:22px}
 
 /* HERO PHONE MOCKUP */
+/* ── Proof strip ── */
+.hero-proof{
+  margin-top:40px;
+  display:flex;flex-direction:column;align-items:center;gap:16px;
+}
+.hero-proof-label{
+  font-size:12px;font-weight:600;letter-spacing:.8px;text-transform:uppercase;
+  color:rgba(255,255,255,.28);display:flex;align-items:center;gap:8px;
+}
+.hero-proof-label::before,.hero-proof-label::after{
+  content:"";display:block;width:40px;height:1px;background:rgba(255,255,255,.12);
+}
+.hero-proof-cards{
+  display:flex;gap:16px;justify-content:center;flex-wrap:wrap;
+}
+.hpc{
+  width:200px;background:rgba(255,255,255,.035);
+  border:1px solid rgba(255,255,255,.08);border-radius:14px;
+  overflow:hidden;cursor:pointer;
+  transition:border-color .25s,box-shadow .25s,transform .25s cubic-bezier(.34,1.56,.64,1);
+  position:relative;
+}
+.hpc:hover{
+  border-color:rgba(124,92,255,.5);
+  box-shadow:0 0 0 1px rgba(124,92,255,.2),0 16px 40px rgba(124,92,255,.2);
+  transform:translateY(-4px) scale(1.02);
+}
+.hpc[data-color="blue"]:hover{
+  border-color:rgba(92,225,255,.5);
+  box-shadow:0 0 0 1px rgba(92,225,255,.2),0 16px 40px rgba(92,225,255,.15);
+}
+.hpc-bar{
+  display:flex;align-items:center;gap:6px;
+  padding:7px 10px;
+  background:rgba(255,255,255,.025);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.hpc-dots{display:flex;gap:4px}
+.hpc-dot{width:7px;height:7px;border-radius:50%}
+.hpc-dot:nth-child(1){background:#ff5f56}
+.hpc-dot:nth-child(2){background:#febc2e}
+.hpc-dot:nth-child(3){background:#28c840}
+.hpc-url{
+  flex:1;font-size:9px;color:rgba(255,255,255,.3);
+  font-family:'SF Mono',Menlo,monospace;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.hpc-preview{
+  height:110px;overflow:hidden;position:relative;background:#fff;
+}
+.hpc-preview::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(180deg,transparent 40%,rgba(6,7,12,.95) 100%);
+  z-index:2;pointer-events:none;
+}
+.hpc-preview iframe{
+  width:1440px;height:900px;
+  transform:scale(0.139);transform-origin:top left;
+  border:none;pointer-events:none;display:block;
+}
+.hpc-footer{
+  padding:8px 10px 10px;
+  display:flex;align-items:center;justify-content:space-between;
+}
+.hpc-name{font-size:11px;font-weight:700;color:var(--text)}
+.hpc-arrow{
+  width:22px;height:22px;border-radius:50%;
+  background:rgba(124,92,255,.2);color:#a78bfa;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;
+  transition:background .2s,transform .2s;flex-shrink:0;
+}
+.hpc[data-color="blue"] .hpc-arrow{background:rgba(92,225,255,.15);color:#67e8f9}
+.hpc:hover .hpc-arrow{transform:rotate(-45deg) scale(1.15)}
+/* Shimmer overlay on hover */
+.hpc::before{
+  content:"";position:absolute;inset:0;z-index:5;border-radius:14px;
+  background:linear-gradient(135deg,transparent 40%,rgba(124,92,255,.06) 100%);
+  opacity:0;transition:opacity .3s;pointer-events:none;
+}
+.hpc:hover::before{opacity:1}
+
 .hero-phone{margin-top:64px;display:flex;justify-content:center;perspective:1400px}
 .phone-frame{
   position:relative;width:320px;max-width:88vw;
@@ -1000,6 +1082,46 @@ footer{border-top:1px solid var(--border);padding:56px 0 40px;text-align:center;
       <a class="btn btn-ghost" href="#demo">Смотреть демо →</a>
     </div>
 
+    <!-- Proof strip: live demo sites -->
+    <div class="hero-proof">
+      <div class="hero-proof-label">Готовые сайты для клиентов</div>
+      <div class="hero-proof-cards">
+
+        <div class="hpc" data-color="purple" onclick="openSiteModal('https://coopflower.vercel.app','coopflower.vercel.app')">
+          <div class="hpc-bar">
+            <div class="hpc-dots">
+              <div class="hpc-dot"></div><div class="hpc-dot"></div><div class="hpc-dot"></div>
+            </div>
+            <div class="hpc-url">coopflower.vercel.app</div>
+          </div>
+          <div class="hpc-preview">
+            <iframe src="https://coopflower.vercel.app" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+          </div>
+          <div class="hpc-footer">
+            <div class="hpc-name">💐 Цветочный</div>
+            <div class="hpc-arrow">↗</div>
+          </div>
+        </div>
+
+        <div class="hpc" data-color="blue" onclick="openSiteModal('https://coop-autowash-demo.vercel.app','coop-autowash-demo.vercel.app')">
+          <div class="hpc-bar">
+            <div class="hpc-dots">
+              <div class="hpc-dot"></div><div class="hpc-dot"></div><div class="hpc-dot"></div>
+            </div>
+            <div class="hpc-url">coop-autowash-demo.vercel.app</div>
+          </div>
+          <div class="hpc-preview">
+            <iframe src="https://coop-autowash-demo.vercel.app" loading="lazy" scrolling="no" tabindex="-1" aria-hidden="true"></iframe>
+          </div>
+          <div class="hpc-footer">
+            <div class="hpc-name">🚗 Автомойка</div>
+            <div class="hpc-arrow">↗</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <div class="hero-phone">
       <div class="phone-frame">
         <div class="phone-notch"></div>
@@ -1773,6 +1895,18 @@ soonBtn.addEventListener('click',e=>{
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script>
 gsap.registerPlugin(ScrollTrigger);
+
+/* ── Hero proof strip entrance ── */
+(function(){
+  const proof = document.querySelector('.hero-proof');
+  if(!proof) return;
+  const label = proof.querySelector('.hero-proof-label');
+  const cards = proof.querySelectorAll('.hpc');
+  gsap.set(label,{opacity:0,y:12});
+  gsap.set(cards,{opacity:0,y:24,scale:.94});
+  gsap.to(label,{opacity:1,y:0,duration:.6,delay:1.0,ease:'power2.out'});
+  gsap.to(cards,{opacity:1,y:0,scale:1,duration:.6,stagger:.12,delay:1.15,ease:'back.out(1.4)'});
+})();
 
 /* ══════════════════════════════════════════
    SITES SECTION — full GSAP upgrade
