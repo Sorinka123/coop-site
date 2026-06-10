@@ -2283,12 +2283,13 @@ document.addEventListener('keydown',e=>{
         strip.querySelectorAll('.roi-num').forEach(el=>{
           const txt = el.textContent.trim();
           const num = parseFloat(txt.replace(/[^\d.]/g,''));
-          if(!isNaN(num) && num > 0){
-            const suffix = txt.replace(/[\d.]/g,'');
-            gsap.from({v:0},{v:num,duration:1.4,delay:.2,ease:'power2.out',
-              onUpdate:function(){ el.textContent = Math.round(this.targets()[0].v) + suffix; }
-            });
-          }
+          /* skip non-numeric values like "24/7" */
+          if(isNaN(num) || !/^\d/.test(txt)) return;
+          if(num > 0) return; /* only animate zeros */
+          const suffix = txt.replace(/^[\d.]+/,'');
+          const target = num === 0 ? 0 : num;
+          /* for "0 ₸" and "0" — just do entrance pop, no count needed */
+          gsap.from(el,{scale:.7,opacity:0,duration:.5,delay:.3,ease:'back.out(2)'});
         });
       }
     });
